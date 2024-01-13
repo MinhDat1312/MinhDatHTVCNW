@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Travel reservation form</h1>
+    <p><b>* denotes mandotory</b></p>
+
+    <label for="fullname">Full name*:</label> <br>
+    <input type="text" id="fullname" name="fullname" placeholder="FirstName LastName" tabindex="1" required><br>
+
+    <label for="email">Email address*:</label> <br>
+    <input type="text" id="eamil" name="email" placeholder="EMAIL_ADDRESS" tabindex="2" required><br>
+
+    <label for="select">Select Tour Package*:</label> <br>
+    <select id="select" name="select">
+        <option>Goa</option>
+        <option>Gob</option>
+        <option>Goc</option>
+    </select> <br>
+
+    <label for="arrivaldate">Arrival date*:</label> <br>
+    <input type="text" id="arrivaldate" name="arrivaldate" placeholder="m/d/y" tabindex="3" required><br>
+
+    <label for="number">Number of persons*:</label> <br>
+    <input type="text" id="number" name="number" placeholder="UNKNOWN_TYPE" tabindex="4" required><br>
+    
+    What would you want to avail?*<br>
+
+    <label for="check1">Boarding</label>
+    <input type="checkbox" id="check1" name="check"><br>
+
+    <label for="check2">Fooding</label>
+    <input type="checkbox" id="check2" name="check"><br>
+
+    <label for="check3">Sight seeing</label>
+    <input type="checkbox" id="check3" name="check"><br>
+
+    Discount Coupon code:<br>
+    <input type="text" id="txtCoupon" name="txtCoupon" placeholder="UNKNOWN_TYPE" tabindex="5" required><br>
+
+    Terms and conditions*<br>
+    <input type="radio" id="rd1" name="radio">
+    <label for id="rd1">I agree</label>
+    <input type="radio" id="rd2" name="radio">
+    <label for id="rd2">I disagree</label>
+
+    <br>
+
+    <input type="submit" id="submit" name="submit" value="Complete reservation">
+</body>
+</html>
