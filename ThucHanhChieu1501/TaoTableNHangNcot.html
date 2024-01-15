@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language="javascript" type="text/javascript" charset="UTF-8">
+        var m=prompt("Nhập số dòng:");
+        var n=prompt("Nhập số cột:");
+        document.writeln("<caption>"+"DANH SÁCH"+"</caption>");
+        document.writeln("<table width=50% border=1>");
+        document.writeln("<tr>");
+        for(var i=1;i<=n;i++){
+            document.writeln("<th>"+"Tiêu đề thứ "+i+"</th>");
+        }
+        document.writeln("</tr>");
+        for(var i=1;i<=m;i++){
+            document.writeln("<tr>");
+            for(var j=1;j<=n;j++){
+                document.writeln("<td>"+"Dòng "+i+"Cột "+j+"</td>");
+            }
+            document.writeln("</tr>");
+        }
+        document.writeln("</table>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
