@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Nhập năm để kiểm tra:
+        <input type="text" id="nam">
+    </p>
+    <p>
+        Kích chuột để thực hiện:
+        <input type="button" name="KiemTra" value="Kích chuột" onclick="kiem_tra_nam_nhuan()">
+        <script language="javascript">
+            function kiem_tra_nam_nhuan(){
+                var year=document.getElementById("nam").value;
+                if(year%400==0 || (year%4==0 && year%100!=0)){
+                    alert(year+" là năm nhuận");
+                }
+                else{
+                    alert(year+" không là năm nhuận");
+                }
+            }
+        </script>
+    </p>
+</body>
+</html>
