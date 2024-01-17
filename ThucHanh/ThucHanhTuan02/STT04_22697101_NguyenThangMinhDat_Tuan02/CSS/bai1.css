@@ -1,0 +1,84 @@
+h1{
+    font-style: italic;
+    text-align: center;
+    text-shadow: 3px 3px pink;
+    color: rgb(241, 58, 88);
+}
+.main{
+    display: flex;
+}
+.menu{
+    background-color: pink;
+    width: 100%;
+    height: 40px;
+    text-indent: 20px;
+    position: relative;
+}
+img{
+    position: absolute;
+    width: 20px;
+    left:130px;
+}
+.menu ul li{
+    text-align: center;
+    color: white;
+    height: 20px;
+    width: 150px;
+    float: left;
+    margin-top: 10px;
+    border-right: 2px solid black;
+}
+#button_menu{
+    position: absolute;
+    bottom: 9px;
+    right:650px;
+}
+.main .aside1 div{
+    background-color: pink;
+    color: white;
+    border-radius: 10px 10px;
+    width: 300px;
+    height: 25px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.aside1 img{
+    width: 200px;
+    height: 100px;
+    border-radius: 50%;
+    left:0px;
+    position: absolute;
+}
+.section h2{
+    background-color: pink;
+    color:rgb(238, 62, 91);
+    margin-left: 200px;
+    width: 400px;
+    text-align: center;
+}
+.section p{
+    padding-left: 20px;
+    margin-top:0px;
+    color:rgb(238, 62, 91);
+}
+.aside2{
+    background-color: black;
+    color: white;
+    width: 490px;
+    height: 600px;
+    position: relative;
+    top:20px;
+    left:100px;
+    position: relative;
+}
+.aside2 h2{
+    position: absolute;
+    font-size: 30px;
+    margin-top: 0px;;
+}
+.aside2 img{
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    
+}
