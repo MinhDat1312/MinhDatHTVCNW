@@ -1,0 +1,134 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Arial Narrow', Arial, sans-serif;
+}
+
+#header {
+    position: relative;
+    height: 200px;
+    margin: 10px;
+    background: url('../Images/bai02/logo.png') top center / cover no-repeat;
+}
+
+#header img {
+    position: absolute;
+    margin-top: 25px;
+    width: 100px;
+    height: 117px;
+}
+
+#header .title{
+    position: absolute;
+    margin-left: 130px;
+    margin-top: 60px;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#header .title h1 {
+    letter-spacing: 5px;
+}
+
+.nav {
+    position: absolute;
+    margin-top: 150px;
+    width: 100%;
+    height: 50px;
+    background-color: #ccc;
+}
+
+#header .nav li{
+    display: inline-block;
+}
+
+#header .nav a {
+    padding:0px 20px 0px 20px;
+    line-height: 50px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#section {
+    position: relative;
+    width: 70%;
+    margin: 10px;
+}
+
+#section .article1 img,
+#section .article2 img{
+    position: absolute;
+    margin-top: 10px;
+    border: 2px solid white;
+}
+
+#section .article1 a {
+    position: absolute;
+    margin-top: 210px;
+    text-decoration: none;
+}
+
+#section .article1 .decription {
+    position: absolute;
+    width: 40%;
+    margin-left: 350px;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+#section .article2 img {
+    margin-top: 300px;
+}
+
+#section .article2 a {
+    position: absolute;
+    margin-top: 500px;
+    text-decoration: none;
+}
+
+#section .article2 .decription {
+    position: absolute;
+    width: 40%;
+    margin-left: 350px;
+    margin-top: 320px;
+    font-size: 20px;
+}
+
+#aside {
+    float: right;
+    margin: 10px;
+    width: 40%;
+    color: red;
+    font-size: 20px;
+}
+
+#aside .recipe li{
+    margin: 25px;
+}
+
+#aside .title-contact{
+    margin-top: 100px;
+}
+
+#aside .contact {
+    margin-top: 20px;
+    color: black;
+}
+
+#footer {
+    margin: 550px 10px 10px 10px;
+    height: 30px;
+    background-color: #767474;
+    color: white;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-weight: 20px;
+}
