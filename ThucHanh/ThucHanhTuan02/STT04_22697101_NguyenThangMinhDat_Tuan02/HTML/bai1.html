@@ -4,57 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/bai1.css">
+    <link rel="stylesheet" href="../CSS/bai1.css">
 </head>
 <body>
-    <div class="header">
-        <h1>EXAMPLE CAFE MENU</h1>
-        <div class="menu">
-            <ul type="none">
-                <li> <img src="../Images/icons8-home-50.png" alt="home"></li>
-                <li>Starters</li>
-                <li>Main Courses</li>
-                <li>Desserts</li>
-                <li>
-                    <input type="text" id="menu_text">
-                    <input type="button" id="button_menu" value="Go">
-                </li>
+    <div id="main">
+        <div id="header">
+            <h1>Example Cafe Menu</h1>
+        </div>
+
+        <div id="nav">
+            <ul class="menu">
+                <li><a href=""><img src="../Images/icons8-home-50.png" alt="home"></a></li>
+                <li><a href="">Starters</a></li>
+                <li><a href="">Main Courses</a></li>
+                <li><a href="">Desserts</a></li>
             </ul>
+            <div class="search">
+                <input type="text" id="text_search">
+                <label for="text_search">Go</label>
+            </div>
+        </div>
+
+        <div id="container">
+            <div class="aside1">
+                <div class="list"><a href="">Cafe Latte</a></div>
+                <div class="list"><a href="">Capuchino</a></div>
+                <div class="list"><a href="">Ocean Blue</a></div>
+                <div class="list"><a href="">Milk Cafe</a></div>
+                <div class="list"><a href="">Smooth</a></div>
+
+                <div class="img-company">
+                    <img src="../Images/company.png" alt="company">
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="content-main">
+                    <div class="starter">
+                        <div class="box1">Starter</div>
+                        <ul class="menu-starter">
+                            <li>Chesnut and Mushroom Goujons <u style="color: pink;">(v)</u></li>
+                            <li>Goat Cheese <u style="color: pink;">(v)</u></li>
+                            <li>Honey Soy Chicken Bebabs <u style="color: pink;">(v)</u></li>
+                            <li>Seafood Salad <u style="color: pink;">(v)</u></li>
+                        </ul>
+                        <u><a href="" style="color: rgb(239, 57, 88);">Back to top</a></u>
+                    </div>
+
+                    <div class="starter">
+                        <div class="box1">Desserts</div>
+                        <ul class="menu-starter">
+                            <li>Lemon Sorbet <u style="color: pink;">(v)</u></li>
+                            <li>Chocolate Mud Pie <u style="color: pink;">(v)</u></li>
+                            <li>Pecan Pie <u style="color: pink;">(v)</u></li>
+                            <li>Selection of fine Cheeses from Around the World <u style="color: pink;">(v)</u></li>
+                        </ul>
+                        <u><a href="" style="color: rgb(239, 57, 88);">Back to top</a></u>
+                    </div>
+                </div>
+
+                <div class="form">
+                    <div class="title">Information</div>
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="text" id="firstname" placeholder="First Name">
+                            </td>
+                            <td>
+                                <input type="text" id="lastname" placeholder="Last Name">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="email" id="email" placeholder="Email">
+                            </td>
+                            <td>
+                                <input type="tel" id="telephone" placeholder="Telephone">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <select id="national">
+                                    <option>USA</option>
+                                    <option>VietNam</option>
+                                    <option>Argentina</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="radio" id="Vietnam" name="check"> VietNamese
+                                <input type="radio" id="Foreign" name="check"> Foreigner
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <textarea cols="96" rows="5" id="comment">Comment</textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type="button" id="btn1" value="Submit">
+                                <input type="button" id="btn2" value="Cancel">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="aside2">
+                <h1>Events</h1><br>
+                <h2>Regular Meetings</h2>
+                <img src="../Images/meeting.png" alt="meeting">
+                <p>Host your regular team meetings or activities in
+                     the comfort of your own private room.
+                     <a href="" style="color: pink;">Read more</a>
+                </p><br>
+                <h2>Product Launches</h2>
+                <img src="../Images/launch.png" alt="launch">
+                <p>Launch your product with ease in a space that truly fits its image.
+                     <a href="" style="color: pink;">Read more</a>
+                </p>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div>ABC Company <sup>©</sup> - 12345678 - abccoffee@gmail.com</div>
         </div>
     </div>
-    <diV class="main">
-        <div class="aside1"><br>
-            <div>Spinach and Ricotta Roulade</div><br>
-            <div>Beef Tournados with Mustard and Dill Sauce</div><br>
-            <div>Roast Chicken Salad</div><br>
-            <div>Icelandic Cod with Parsley Sauce</div><br>
-            <div>om Wellington</div><br>
-            <img src="../Images/company.png">
-        </div>
-        <div class="section">
-            <h2>Starters</h2>
-            <ul>
-                <li>Chestnut and Mushroom Goujons <u>(v)</u></li>
-                <li>Goat Cheese Salad <u>(v)</u></li>
-                <li>Honey Soy Chicken Kebabs</li>
-                <li>Seafood Salad</li>
-            </ul>
-            <p><u>Back to top</u></p>
-            <h2>Desserts</h2>
-            <ul>
-                <li>Lemon Sorbet<u>(v)</u></li>
-                <li>Chocolate Mud Pie<u>(v)</u></li>
-                <li>Pecan Pie<u>(v)</u></li>
-                <li>Selection of Fine Cheeses from Around the World</li>
-            </ul>
-            <p><u>Back to top</u></p>
-        </div>
-        <div class="aside2">
-            <h2>Events</h2>
-           
-            
-        </div>
-    </diV>
-    <p>Items marked with a (v) are suitable for vegetarians</p>
 </body>
 </html>
