@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script language="javascript" type="text/javascript">
+        var m=eval(prompt("Nhập số dòng:"));
+        var n=eval(prompt("Nhập số cột:"));
+
+        document.write("<table width =50% border=1>");
+
+        for(var i=1;i<=m;i++){
+            document.write("<tr>");
+
+            for(var j=1;j<=n;j++){
+                document.write("<td>" + "dòng:"+ i + "cột:" + j + "</td>");
+            }
+
+            document.write("</tr>");
+        }
+
+        document.write("</table>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
