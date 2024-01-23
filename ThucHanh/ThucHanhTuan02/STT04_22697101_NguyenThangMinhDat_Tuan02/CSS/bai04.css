@@ -1,0 +1,102 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Arial Narrow', Arial, sans-serif;
+}
+
+#main {
+    position: relative;
+    margin-top:30px;
+    margin-bottom: 30px;
+    margin-left: 350px;
+    width: 800px;
+    height: 750px;
+    border: 1px solid black;
+}
+
+#header img {
+    float: right;
+    margin-right: 15px;
+}
+
+#section {
+    position: absolute;
+}
+
+#section #aside img {
+    position: absolute;
+    margin-top: 75px;
+    width: 190px;
+    height: 673px;
+    border-top: 3px solid orange;
+}
+
+#section #aside ul {
+    position: absolute;
+    width: 160px;
+    top: 85px;
+}
+
+#section #aside li {
+    padding: 0px 0px 10px 10px;
+    border-bottom: 2px dashed orange;
+}
+
+#section #aside a {
+    font-size: 20px;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+#article {
+    position: absolute;
+    top: 75px;
+    left: 190px;
+    width: 590px;
+    height: 640px;
+    border-top: 3px solid orange;
+    border-bottom:3px solid orange  ;
+}
+
+#article .article1 h2,
+#article .article2 h2 {
+    margin: 15px 0px 0px  15px;
+    color: orange;
+    font-weight: bold;
+}
+
+#article p {
+    margin-left: 15px;
+    color: rgb(186, 94, 152);
+    font-size: 17px;
+} 
+
+#article .article2 h3 {
+    margin-top: 15px;
+    color: orange;
+    font-weight: bold;
+}
+
+#article .article2 div {
+    float: right;
+    width: 300px;
+    height: 200px;
+    border: 4px solid orange;
+}
+
+#article .article2 ul {
+   margin: 10px 0px 0px 36px;
+   color: rgb(186, 94, 152);
+}
+
+#footer {
+    position: absolute;
+    top: 720px;
+    left: 240px;
+    color: orange;
+    font-weight: bold;
+}
