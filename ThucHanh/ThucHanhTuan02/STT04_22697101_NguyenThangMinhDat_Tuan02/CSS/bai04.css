@@ -52,6 +52,7 @@ html {
     list-style-type: none;
 }
 
+#article_home,
 #article {
     position: absolute;
     top: 75px;
@@ -62,11 +63,16 @@ html {
     border-bottom:3px solid orange  ;
 }
 
+#article_home h2,
 #article .article1 h2,
 #article .article2 h2 {
     margin: 15px 0px 0px  15px;
     color: orange;
     font-weight: bold;
+}
+
+#article_home h2 {
+    font-size: 25px;
 }
 
 #article p {
@@ -99,4 +105,52 @@ html {
     left: 240px;
     color: orange;
     font-weight: bold;
+}
+
+#article_home img {
+    margin-left: 15px;
+    height: 550px;
+}
+
+#article_home .article_home_1,
+#article_home .article_home_2,
+#article_home .article_home_3 {
+    position: absolute;
+    border: 1px solid black;
+}
+
+#article_home .article_home_1 {
+    top: 35px;
+    left: 350px;
+    width: 150px;
+    height: 140px;
+    background-color: white;
+    color: orange;
+    font-size: 13px;
+    padding: 5px;
+    box-shadow: inset 3px 3px 3px #504c4c;
+}
+
+#article_home .article_home_2 {
+    left: -20px;
+    top: 250px;
+    width: 150px;
+    height: 100px;
+    background-color: white;
+    color: orange;
+    font-size: 13px;
+    padding: 5px;
+    box-shadow: inset 3px 3px 3px #504c4c;
+}
+
+#article_home .article_home_3 {
+    top: 420px;
+    left: 350px;
+    width: 150px;
+    height: 100px;
+    background-color: white;
+    color: orange;
+    font-size: 13px;
+    padding: 5px;
+    box-shadow: inset 3px 3px 3px #504c4c;
 }
