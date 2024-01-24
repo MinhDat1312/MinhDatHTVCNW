@@ -1,0 +1,101 @@
+* {
+    padding: 0px;
+    margin: 0px auto;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Arial Narrow', Arial, sans-serif;
+}
+
+.wrapper {
+    height: 800px;
+    width: 1089px;
+    background-color: antiquewhite;
+}
+
+.wrapper header img {
+    height: 150px;
+    width: 1089px;
+}
+
+.wrapper header {
+    position: relative;
+}
+
+.wrapper header h1 {
+    position: absolute;
+    top: 30px;
+    left: 300px;
+}
+
+.wrapper header h2 {
+    position: absolute;
+    top: 70px;
+    left: 400px;
+    color: blue;
+    text-shadow: chartreuse -10px 5px 0px;
+}
+
+.wrapper nav {
+    position: relative;
+}
+
+nav .menu li {
+    position: absolute;
+    height: 50px;
+    width: 150px;
+    background-color: cyan;
+    list-style-type: none;
+    text-indent: 20px;
+    border-radius: 20px 0px 20px 0px;
+}
+
+nav .menu li:hover {
+    background-color: rgb(196, 158, 158);
+}
+
+nav .menu li:hover a {
+    color: black;
+}
+
+nav .menu li>a {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: purple;
+}
+
+nav .menu li:nth-child(5) {
+    top: 20px;
+    right: 50px;
+    text-indent: 10px;
+}
+
+nav .menu li:nth-child(4) {
+    top: 20px;
+    right: 210px;
+    text-indent: 20px;
+}
+
+nav .menu li:nth-child(3) {
+    top: 20px;
+    right: 370px;
+    text-indent: 20px;
+}
+
+nav .menu li:nth-child(2) {
+    top: 20px;
+    right: 530px;
+    text-indent: 20px;
+}
+
+nav .menu li:nth-child(1) {
+    top: 20px;
+    right: 690px;
+    text-indent: 20px;
+    transform: rotate(-10deg);
+}
+
+nav form #txtemail {
+    width: 100px;
+}
