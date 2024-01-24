@@ -11,7 +11,7 @@ html {
 #wrapper {
     height: 600px;
     width: 1089px;
-    background-color: rgb(0, 153, 255);
+    background-color: rgb(86, 172, 229);
 }
 
 #wrapper header {
@@ -23,17 +23,27 @@ html {
 
 #wrapper header li {
     position: absolute;
-    line-height: 50px;
+    top: 10px;
+    left: 30px;
     height: 30px;
     width: 100px;
     list-style-type: none;
-    left: 30px;
+    text-indent: 10px;
+    border-radius: 20px;
 }
 
 header li>a {
     color: white;
     font-weight: 900;
     text-decoration: none;
+}
+
+header li:hover {
+    background-color: white;
+}
+
+header li:hover a {
+    color: black;
 }
 
 header li:nth-child(2) {
@@ -50,4 +60,14 @@ header li:nth-child(4) {
 
 header li:nth-child(5) {
     right: 50px;
+}
+
+header h2 {
+    position: absolute;
+    right: 20px;
+    line-height: 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 30px;
+    text-shadow: 4px 3px 3px blue;
 }
