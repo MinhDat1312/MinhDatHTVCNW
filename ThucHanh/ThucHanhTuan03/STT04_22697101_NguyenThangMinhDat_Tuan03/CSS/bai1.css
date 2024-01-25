@@ -43,7 +43,7 @@ header li:hover {
 }
 
 header li:hover a {
-    color: black;
+    color: cyan;
 }
 
 header li:nth-child(2) {
@@ -70,4 +70,100 @@ header h2 {
     font-weight: 700;
     font-size: 30px;
     text-shadow: 4px 3px 3px blue;
+}
+
+#content {
+    height: 470px;
+}
+
+#content .article {
+    float: left;
+    width: 50%;
+}
+
+#content .article {
+    color: white;
+}
+
+#content .article h2 {
+    margin: 25px 0px 0px 10px;
+    font-size: 30px;
+}
+
+#content .article p {
+    margin: 0px 0px 0px 10px;
+    font-size: 17px;
+}
+
+#content table {
+    margin: 10px 0px 0px 40px;
+    border-spacing: 10px;
+}
+
+#content table input {
+    width: 310px;
+}
+
+#content table td>label {
+    /* color: white; */
+    font-weight: 700;
+}
+
+#content table select,
+#content table input,
+#content table textarea {
+    border-radius: 4px;
+    border-color: blueviolet;
+}
+
+#content .btn {
+    margin: 0px 0px 0px 225px;
+}
+
+#content .btn  input {
+    width: 70px;
+    border-radius: 4px;
+    border-color: blueviolet;
+    border-style: dashed;
+}
+
+#content .btn  input:hover {
+    background-color: brown;
+    color: white;
+}
+
+#content .article img {
+    margin: 25px 0px 0px 10px;
+    width: 480px;
+}
+
+#content .article h1 {
+    margin: 30px 0px 0px 50px;
+    font-weight: 800;
+    font-size: 35px;
+    color: blue;
+    text-shadow: -4px 1px 3px blue;
+}
+
+#content .article h3 {
+    margin: 0px 0px 0px 60px;
+    font-weight: 900;
+    font-size: 20px;
+    color: blue;
+}
+
+#content::after {
+    display: table;
+    clear: both;
+}
+
+footer {
+    width: 100%;
+    border-top: 2px dashed white;
+}
+
+footer div {
+    text-align: center;
+    margin-top: 25px;
+    color: white;
 }
