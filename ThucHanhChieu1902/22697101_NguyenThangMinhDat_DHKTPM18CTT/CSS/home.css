@@ -1,0 +1,123 @@
+#nav {
+    display: flex;
+    width: 100%;
+    background-color: pink;
+    justify-content: space-between;
+
+    #option {
+        display: flex;
+        padding-left: 10px;
+        list-style: none;
+
+        li {
+            margin-right: 30px;
+
+            a {
+                color: blue;
+                text-decoration: none;
+            }
+        }
+    }
+
+    #search {
+        margin: 15px 10px 0 0;
+
+        label {
+            color: red;
+        }
+
+        button {
+            background-color: blue;
+            color: ghostwhite;
+        }
+    }
+}
+
+#banner {
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+#content {
+    display: flex;
+    justify-content: space-between;
+
+    #text-presentation {
+        width: 70%;
+        padding-left: auto;
+        display: flex;
+        background: linear-gradient(
+                to right, rgb(125, 237, 233) 0%, 
+                transparent 50%, rgb(125, 237, 233) 100%);
+
+        #text {
+            font-size: 20px;
+            width: 60%;
+            margin-left: auto;
+
+            h1 {
+                text-align: center;
+                color: red
+            }
+        }
+
+        #form {
+            width: 30%;
+            height: 90%;
+            margin: 20px 10px 10px auto;
+            font-size: 20px;
+            border: 3px solid gray;
+            border-radius: 10px;
+            padding: 0 10px 0 10px;
+            justify-content: center;
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+            background: transparent;
+
+            div {
+                margin-bottom: 10px;
+
+                input {
+                    border-radius: 4px;
+                    border-top: 2px solid grey;
+                    border-left: 2px solid grey;
+                    border-bottom: 2px solid black;
+                    border-right: 2px solid black;
+                }
+            }
+
+            button {
+                border-radius: 5px;
+                border: none;
+                margin: 10px 15px 10px 10px;
+                box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+
+    #image-presentation {
+        width: 30%;
+        border: 5px solid gray;
+        
+        .tour-image {
+
+            h2 {
+                padding-bottom: 10px;
+                color: red;
+                text-align: center;
+                text-shadow: 3px 3px 3px rgba(255, 0, 0, 0.5);
+                border-bottom: 3px dotted darkred;
+            }
+            
+            img {
+                margin: 10px 10px 10px 10px;
+                width: 95%;
+                height: 30%;
+                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
+                object-fit: cover;
+            }
+        }
+    }
+}
