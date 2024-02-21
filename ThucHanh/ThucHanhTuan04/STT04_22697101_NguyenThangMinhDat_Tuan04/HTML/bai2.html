@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container border border-primary">
         <table class="table">
             <tr>
                 <td class="fw-bold">Checkout</td>
@@ -130,12 +130,82 @@
                 </div>
             </div>
 
-            <div class="row mt-5">
+            <div class="row mt-5 mb-3 mx-3">
                 <button class="btn btn-primary">
                     Proceed
                 </button>
             </div>
         </form>
     </div>
+    <br><br><br><br>
+    <div class="container border border-primary mb-5">
+        <form>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="username" class="fw-bold">Username*</label>
+                    <input type="text" class="form-control" id="username" placeholder="Choose your username">
+                </div>
+                <div class="form-group col-6">
+                    <label for="company" class="fw-bold">Company name*</label>
+                    <input type="text" class="form-control" id="company" placeholder="Your company name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="email" class="fw-bold">E-mail*</label>
+                    <input type="email" class="form-control" id="email" placeholder="Your current email address">
+                </div>
+                <div class="form-group col-6">
+                    <label for="category" class="fw-bold">Category*</label>
+                    <input type="text" class="form-control" id="category" placeholder="Skills category">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="password" class="fw-bold">Password*</label>
+                    <input type="password" class="form-control" id="password" placeholder="Create a password">
+                </div>
+                <div class="form-group col-6">
+                    <label for="contact" class="fw-bold">Contact number*</label>
+                    <input type="tel" class="form-control" id="contact" placeholder="Provide your number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="fullname" class="fw-bold">Full name*</label>
+                    <input type="text" class="form-control" id="fullname" placeholder="Your first name and last name">
+                </div>
+                <div class="form-group col-6">
+                    <label for="location" class="fw-bold">Your location*</label>
+                    <input type="text" class="form-control" id="location" placeholder="Your pin code and city">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label for="gender" class="fw-bold">Gender*</label><br>
+                    <div class=" custom-radio form-check-inline">
+                        <input type="radio" class="custom-control-input" id="male" name="gender">
+                        <label for="male" class="custom-control-label">Male</label>
+                    </div>
+                    <div class=" custom-radio form-check-inline ">
+                        <input type="radio" class="custom-control-input" id="female" name="gender">
+                        <label for="female" class="custom-control-label">Female</label>
+                    </div>
+                </div>
+                <div class="form-group col-6">
+                    <input type="checkbox" class="custom-check" id="check">
+                    <label for="check" class="custom-check">Agree with the terms and conditions</label>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="form-group col-6"></div>
+                <div class="form-group col-6">
+                    <button class="btn btn-primary">Signup</button> or
+                    <button class="btn btn-primary">Sign up with Facebook</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
 </body>
 </html>
