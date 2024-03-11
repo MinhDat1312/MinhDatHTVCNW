@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        th {
+            text-align: center;
+            color: pink;
+            background-color: #e5e3e3f9;
+        }
+
+        table, th,td {
+            border: 2px solid black;
+        }
+
+        #button {
+            text-decoration: none;
+            color: black;
+            border: 2px solid black;
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <table>
+            <tr>
+                <th colspan="2">THÔNG TIN ĐĂNG KÝ</th>
+            </tr>
+            <tr>
+                <td>Họ tên</td>
+                <td>
+                    <input type="text" id="ten">
+                </td>
+            </tr>
+            <tr>
+                <td>Mật khẩu</td>
+                <td>
+                    <input type="password" id="password">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="dangnhap.html" id="button" onclick="display();">Nhập</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function display(){
+            var ten=document.getElementById("ten").value;
+            var mk=document.getElementById("password").value;
+
+            localStorage.ten=ten;
+            localStorage.mk=mk;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .image {
+            width: 500px;
+            height: 500px;
+            border: 2px solid black;
+        }
+
+        .image__img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .button {
+            display: flex;
+            margin: 10px 0 0 180px;
+        }
+
+        #btnPlay {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="image">
+            <img src="" alt="" id="displayImg">
+            <img src="../IMG/bai3/b1.jpg" alt="" class="image__img" id="b1" style="display: none;">
+            <img src="../IMG/bai3/b2.jpg" alt="" class="image__img" id="b2" style="display: none;">
+            <img src="../IMG/bai3/b3.jpg" alt="" class="image__img" id="b3" style="display: none;">
+            <img src="../IMG/bai3/b4.jpg" alt="" class="image__img" id="b4" style="display: none;">
+            <img src="../IMG/bai3/b5.jpg" alt="" class="image__img" id="b5" style="display: none;">
+            <img src="../IMG/bai3/b6.jpg" alt="" class="image__img" id="b6" style="display: none;">
+            <img src="../IMG/bai3/b7.jpg" alt="" class="image__img" id="b7" style="display: none;">
+            <img src="../IMG/bai3/b8.jpg" alt="" class="image__img" id="b8" style="display: none;">
+            <img src="../IMG/bai3/b9.jpg" alt="" class="image__img" id="b9" style="display: none;">
+            <img src="../IMG/bai3/b10.jpg" alt="" class="image__img" id="b10" style="display: none;">
+        </div>
+        <div class="button">
+            <button id="btnPlay" onclick="showImage();">Play</button>
+            <button id="btnStop" onclick="stopImage();">Stop</button>
+        </div>
+    </div>
+
+    <script>
+        var images=document.getElementsByClassName("image__img");
+        var img=document.getElementById('displayImg');
+        var index=0;
+        var set=null;
+        
+        function showImage(){
+            var res=images[index++];
+            img.src=res.src;
+            img.style.width="100%";
+            img.style.height="100%";
+
+            set=setTimeout(showImage, 1000);
+        }
+
+        function stopImage(){
+            clearTimeout(set);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <p>Chọn loại Cafe</p>
+        
+        <div>
+            <input type="checkbox" id="1" class="check" value="Trung Nguyen" onclick="myFunction();">
+            <label for="1">Trung Nguyen</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="2" value="MeKong" class="check" onclick="myFunction();">
+            <label for="2">MeKong</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="3" value="New Life" class="check" onclick="myFunction();">
+            <label for="3">New Life</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="4" value="Ocean Blue" class="check" onclick="myFunction();">
+            <label for="4">Ocean Blue</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="5" value="Blue Space" class="check" onclick="myFunction();">
+            <label for="5">Blue Space</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="6" value="Windows" class="check" onclick="myFunction();">
+            <label for="6">Windows</label>
+        </div>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function myFunction(){
+            var checks=document.getElementsByClassName("check");
+            var result="Bạn chọn cafe: ";
+            var cafes=[];
+
+            for(var i=0;i<checks.length;i++){
+                if(checks[i].checked===true){
+                    cafes.push(checks[i].value);
+                }
+            }
+
+            for(var i=0;i<cafes.length;i++){
+                result+=cafes[i]+", ";
+            }
+
+            document.getElementById("result").innerText=result;
+        }
+    </script>
+</body>
+</html>

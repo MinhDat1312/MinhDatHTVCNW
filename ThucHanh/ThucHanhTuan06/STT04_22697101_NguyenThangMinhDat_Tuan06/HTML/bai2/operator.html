@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .numberOne, .numberTwo, .button, .result {
+            margin-top: 4px;
+            margin-left: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>PHÉP TÍNH CƠ BẢN</h1>
+        
+        <div class="numberOne">
+            <label for="textOne">Nhập số thứ 1</label>
+            <input type="text" id="textOne" onblur="return check();">
+            <span id="notifyOne">*</span>
+        </div>
+
+        <div class="numberTwo">
+            <label for="textTwo">Nhập số thứ 2</label>
+            <input type="text" id="textTwo" onblur="return check();">
+            <span id="notifyTwo">*</span>
+        </div>
+
+        <div class="button">
+            <button id="plus" onclick="plus();">Cộng</button>
+            <button id="minus" onclick="minus();">Trừ</button>
+            <button id="divide" onclick="divide();">Chia</button>
+            <button id="mod" onclick="mod();">Chia dư</button>
+        </div>
+
+        <div class="result">
+            <label for="result">Kết quả</label>
+            <input type="text" id="result">
+        </div>
+    </div>
+
+    <script>
+        function check(){
+            var re=/^[0-9]+$/;
+            if(re.test(document.getElementById('textOne').value.trim())==false
+            || re.test(document.getElementById('textTwo').value.trim())==false){
+                document.getElementById("notifyOne").innerText="* Bắt buộc bắt đầu bằng số";
+                document.getElementById("notifyTwo").innerText="* Bắt buộc bắt đầu bằng số";
+                return false;
+            }
+            else{
+                document.getElementById("notifyOne").innerText="*";
+                document.getElementById("notifyTwo").innerText="*";
+                return true;
+            }
+        }
+
+        function plus(){
+            var a=parseInt(document.getElementById('textOne').value.trim());
+            var b=parseInt(document.getElementById('textTwo').value.trim());
+
+            if(check()){
+                document.getElementById("result").value=a+b;
+            }
+        }
+
+        function minus(){
+            var a=parseInt(document.getElementById('textOne').value.trim());
+            var b=parseInt(document.getElementById('textTwo').value.trim());
+
+            if(check()){
+                document.getElementById("result").value=a-b;
+            }
+        }
+
+        function divide(){
+            var a=parseInt(document.getElementById('textOne').value.trim());
+            var b=parseInt(document.getElementById('textTwo').value.trim());
+
+            if(check()){
+                document.getElementById("result").value=a/b;
+            }
+        }
+
+        function mod(){
+            var a=parseInt(document.getElementById('textOne').value.trim());
+            var b=parseInt(document.getElementById('textTwo').value.trim());
+
+            if(check()){
+                document.getElementById("result").value=a%b;
+            }
+        }
+    </script>
+</body>
+</html>

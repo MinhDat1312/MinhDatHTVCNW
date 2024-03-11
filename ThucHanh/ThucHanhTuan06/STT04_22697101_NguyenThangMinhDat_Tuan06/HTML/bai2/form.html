@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <h1>FORM ĐỊNH DẠNG</h1>
+        
+        <div>
+            <label for="textTen">Họ và tên</label>
+            <input type="text" id="textTen" placeholder="Nguyễn Thắng Minh Đạt">
+        </div>
+
+        <div>
+            <label>Chọn</label>
+            <input type="radio" id="radioB" name="radio">
+            <label for="radioB">Background</label>
+            <input type="radio" id="radioF" name="radio">
+            <label for="radioF">Font</label>
+        </div>
+
+        <div>
+            <label for="textColor">Chọn màu</label>
+            <select name="textColor" id="textColor">
+                <option value="other">Chọn màu</option>
+                <option value="red">Đỏ</option>
+                <option value="yellow">Vàng</option>
+                <option value="orange">Cam</option>
+                <option value="blue">Xanh lam</option>
+            </select>
+        </div>
+
+        <div>
+            <button id="change" onclick="myFunction();">Đổi màu</button>
+            <button id="cancel" onclick="cancel();">Cancel</button>
+        </div>
+        <p id="paragraph">
+            You can direct link the hyperlink with the file if you know the address but 
+            this is limited by browser. eg. If pdf reader is installed on the client then the 
+            pdf will not be downloaded instead it will be shown. A good solution would be to have a 
+            separate page for downloading files. Just pass filename in query string and in the page load 
+            event just output the file in response stream. This way you can use url say dwnld.aspx? filename.ext
+        </p>
+    </div>
+
+    <script>
+        function myFunction(){
+            var radioB=document.getElementById("radioB");
+            var radioF=document.getElementById("radioF");
+            var chooseColor=document.getElementById("textColor").value;
+
+            if(radioF.checked){
+                document.getElementById("paragraph").style.color=chooseColor;
+            }
+            else if(radioB.checked){
+                document.getElementById("paragraph").style.backgroundColor=chooseColor;
+            }
+        }
+
+        function cancel(){
+            document.getElementById("paragraph").style.color="black";
+            document.getElementById("paragraph").style.backgroundColor="white";
+        }
+    </script>
+</body>
+</html>
