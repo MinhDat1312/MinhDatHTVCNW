@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(()=>{
+            function checkName(){
+                var regex=/^[A-Z]{1}[a-zA-Z\s]+$/;
+                var fullname=$("#fullName").val();
+                if(regex.test(fullname)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+
+            function checkUser(){
+                var regex=/^[A-Z]{1}[a-zA-Z\s0-9]{5,}$/;
+                var username=$("#username").val();
+                if(regex.test(username)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+
+            function checkTel(){
+                var regex=/[0-9]+/;
+                if(regex.test( $("#tel").val()) ||  $("#tel").val()!=""){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+    
+            function checkEmail(){
+                var regex=/[a-zA-Z0-9]+@gmail.com/;
+                if(regex.test( $("#email").val()) || $("#email").val()!=""){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+
+            $("#btnSign").click(()=>{
+                if(checkName() && checkUser() && checkTel() && checkEmail()){
+                    alert("Lưu thông tin thành công");
+                }
+                else if(!checkName()){
+                    $("#fullName").focus();
+                }
+                else if(checkUser()==false){
+                    $("#username").focus();
+                }
+                else if(checkTel()==false){
+                    $("#tel").focus();
+                }
+                else if(checkEmail()==false){
+                    $("#email").focus();
+                }
+            })
+
+            $("#btnCancel").click(()=>{
+                $("#fullName").val("");
+                $("#username").val("");
+                $("#password").val("");
+                $("#repassword").val("");
+                $("#tel").val("");
+                $("#address").val("");
+                $("#email").val("");
+            })
+        })
+
+        
+    </script>
+</head>
+<body>
+    <div class="container bg-light border border-black border-2 my-2 w-75">
+        <div class="row">
+            <div class="col">
+                <h5 class="text-center text-success">Register Form</h5>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4 border border-success d-flex justify-content-end align-items-center">
+                <label for="fullName" class="fs-5 text-primary">Họ và tên <span id="nameNotify">(*)</span> :</label>
+            </div>
+            <div class="col-8 border border-success">
+                <input type="text" class="form-control m-2 w-75" id="fullName"> 
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4 border border-success d-flex justify-content-end align-items-center">
+                <label for="username" class="fs-5 text-primary">Tên đăng nhập <span id="userNotify">(*)</span> :</label>
+            </div>
+            <div class="col-8 border border-success">
+                <input type="text" class="form-control m-2 w-75" id="username"> 
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4 border border-success d-flex justify-content-end align-items-center">
+                <label for="password" class="fs-5 text-primary">Mật khẩu <span id="passNotify">(*)</span> :</label>
+            </div>
+            <div class="col-8 border border-success">
+                <input type="password" class="form-control m-2 w-75" id="password"> 
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4 border border-success d-flex justify-content-end align-items-center">
+                <label for="repassword" class="fs-5 text-primary">Xác nhận mật khẩu <span id="repassNotify">(*)</span> :</label>
+            </div>
+            <div class="col-8 border border-success">
+                <input type="password" class="form-control m-2 w-75" id="repassword"> 
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4 border border-success d-flex justify-content-end align-items-center">
+                <label for="day" class="fs-5 text-primary">Ngày sinh :</label>
+            </div>
+            <div class="col-8 border border-success d-flex align-items-center">
+                <input type="number" class="form-control m-2" style="width: 80px;" id="day" placeholder="1" min="1" max="31"> 
+                <label for="month" class="fs-5 text-primary">Tháng: </label>
+                <input type="number" class="form-control m-2" style="width: 80px;" id="month" placeholder="1" min="1" max="12"> 
+                <label for="year" class="fs-5 text-primary">Năm: </label>
+                <input type="number" class="form-control m-2" style="width: 80px;" id="year" placeholder="1940" min="1900" max="3000"> 
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4 border border-success d-flex justify-content-end align-items-center">
+                <label for="tel" class="fs-5 text-primary">Điện thoại:</label>
+            </div>
+            <div class="col-8 border border-success">
+                <input type="tel" class="form-control m-2 w-75" id="tel"> 
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4 border border-success d-flex justify-content-end align-items-center">
+                <label for="address" class="fs-5 text-primary">Địa chỉ:</label>
+            </div>
+            <div class="col-8 border border-success">
+                <input type="text" class="form-control m-2 w-75" id="address"> 
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4 border border-success d-flex justify-content-end align-items-center">
+                <label for="email" class="fs-5 text-primary">Email khác:</label>
+            </div>
+            <div class="col-8 border border-success">
+                <input type="email" class="form-control m-2 w-75" id="email"> 
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4 border border-success d-flex justify-content-end align-items-center">
+                <label for="favorite" class="fs-5 text-primary">Sở thích:</label>
+            </div>
+            <div class="col-8 border border-success">
+                <select id="favorite" class="m-2 w-25 form-select">
+                    <option value="SING">Ca nhạc</option>
+                    <option value="FOOTBALL">Bóng đá</option>
+                    <option value="DRAW">Vẽ</option>
+                </select>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-4 border border-success d-flex justify-content-end align-items-center">
+            </div>
+            <div class="col-8 border border-success">
+                <button  class="btn border border-dark bg-success text-bg-light border-2 m-2" id="btnSign">Đăng ký</button>
+                <button  class="btn border border-dark bg-danger text-bg-light border-2 m-2" id="btnCancel">Hủy</button>
+            </div>
+        </div>
+      </div>
+</body>
+</html>

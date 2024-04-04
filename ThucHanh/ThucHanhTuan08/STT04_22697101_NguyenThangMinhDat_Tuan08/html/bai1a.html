@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bai1a.css">
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(()=>{
+            $("#txtDN").blur(()=>{
+                var regex=/^[a-zA-Z]{1}[a-zA-Z0-9]*$/;
+                var username=$("#txtDN").val();
+
+                if(regex.test(username)){
+                    $("#tendn").text("*");
+                }
+                else{
+                    $("#tendn").text("Tên đăng nhập không hợp lệ");
+                }
+            });
+
+            $("#txtMK").blur(()=>{
+                var regex=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-+])[a-zA-Z0-9!@#$%^&*-+]{8,}$/;
+                var pass=$("#txtMK").val();
+
+                if(regex.test(pass)){
+                    $("#mk").text("*");
+                }
+                else{
+                    $("#mk").text("Mật khẩu không hợp lệ");
+                }
+            })
+
+
+            $("#txtXNMK").blur(()=>{
+                var pass=$("#txtMK").val();
+                var repass=$("#txtXNMK").val();
+
+                if($("#mk").text()=="*" && pass!=""){
+                    if(pass==repass){
+                        $("#xnmk").text("*");
+                    }
+                    else{
+                        $("#xnmk").text("Phải giống mật khẩu trên");
+                    }
+                }
+                else{
+                    $("#xnmk").text("Nhập mật khẩu trên");
+                }
+            })
+
+            $("#txtName").blur(()=>{
+                var regex=/^[A-Z]{1}[a-zA-Z\s]+$/;
+                var hoten=$("#txtName").val();
+                if(!regex.test(hoten)){
+                    $("#hoten").text("Họ tên không hợp lệ");
+                }
+                else{
+                    $("#hoten").text("*");
+                }
+            })
+
+            $("#txtNS").blur(()=>{
+                var currentDate= new Date();
+                var date=new Date($("#txtNS").val());
+
+                if(currentDate.getFullYear() - date.getFullYear() > 16){
+                    $("#ngaysinh").text("*");
+                }
+                else{
+                    $("#ngaysinh").text("Phải trên 16 tuổi");
+                }
+            })
+
+            $("#txtDC").blur(()=>{
+                if($("#txtDC").val()==""){
+                    $("#diachi").text("Không để trống");
+                }
+                else{
+                    $("#diachi").text("*");
+                }
+            })
+
+            $("#txtDT").blur(()=>{
+                var regex=/^(03|04|05|06|07|09)[0-9]{8}$/;
+                var tel=$("#txtDT").val();
+                if(regex.test(tel)){
+                    $("#dienthoai").text("*");
+                }
+                else{
+                    $("#dienthoai").text("Phải là số");
+                }
+            })
+
+            $("#txtEmail").blur(()=>{
+                var regex=/^[a-zA-Z0-9]+@gmail.com$/;
+                var email=$("#txtEmail").val();
+                if(regex.test(email)){
+                    $("#email").text("*");
+                }
+                else{
+                    $("#email").text("Nhập đúng địa chỉ email");
+                }
+            })
+
+            $("form").submit(()=>{
+                if($("#tendn").text()=="*" && $("#mk").text()=="*" && $("#xnmk").text()=="*" && 
+                $("#hoten").text()=="*" && $("#ngaysinh").text()=="*" && $("#diachi").text()=="*" && 
+                $("#dienthoai").text()=="*" && $("#email").text()=="*"){
+                    alert("Đăng ký thành công");
+                }
+                else{
+                    alert("Điền đúng thông tin");
+                }
+            })
+
+            $("#reset").click(()=>{
+                $("form")[0].reset();
+            })
+        })
+    </script>
+
+    <title>Document</title>
+</head>
+<body>
+    <h2 align="center">ĐĂNG KÝ TÀI KHOẢN</h2>
+    <form name="form1">
+        <div>
+            <label for="txtDN" class="title">Tên đăng nhập:</label>
+            <input type="text" id="txtDN" size="30" placeholder="txtDN">
+            <span id="tendn">*</span>
+        </div>
+        <div>
+            <label for="txtMK" class="title">Mật khẩu:</label>
+            <input type="password" id="txtMK" size="30" placeholder="txtMK">
+            <span id="mk">*</span>
+        </div>
+        <div>
+            <label for="txtXNMK" class="title">Nhập lại mật khẩu:</label>
+            <input type="password" id="txtXNMK" size="30" placeholder="txtXNMK">
+            <span id="xnmk">*</span>
+        </div>
+        <h5 align="center">THÔNG TIN CÁ NHÂN</h5>
+        <div>
+            <label for="txtName" class="title">Họ và tên:</label>
+            <input type="text" id="txtName" size="30" placeholder="txtName">
+            <span id="hoten">* bắt buộc</span>
+        </div>
+        <div>
+            <label for="txtNS" class="title">Ngày sinh:</label>
+            <input type="date" id="txtNS" size="30" placeholder="txtNS">
+            <span id="ngaysinh"> </span>
+        </div>
+        <div class="radio-button">
+            <label for="" class="title">Giới tính:</label>
+            <input type="radio" name="gender" id="male" value="M" checked>
+            <label for="male">Nam</label>
+            <input type="radio" name="gender" id="female" value="F">
+            <label for="female">Nữ</label>
+        </div>
+        <div>
+            <label for="txtDC" class="title">Địa chỉ:</label>
+            <input type="text" id="txtDC" size="30" placeholder="txtDC">
+            <span id="diachi"> </span>
+        </div>
+        <div>
+            <label for="txtDT" class="title">Điện thoại:</label>
+            <input type="tel" id="txtDT" size="30" placeholder="txtDT">
+            <span id="dienthoai">Phải là số </span>
+        </div>
+        <div>
+            <label for="txtEmail" class="title">Email:</label>
+            <input type="email" id="txtEmail" size="30" placeholder="txtEmail">
+            <span id="email">Nhập đúng địa chỉ email </span>
+        </div>
+        <div class="submit">
+            <input type="submit" value="Đăng ký" id="submit">
+            <input type="reset" value="Hủy" id="reset">
+        </div>
+    </form>
+</body>
+</html>
