@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+
+    <style>
+        thead, tbody, tfoot, td{
+            border: 4px solid rgb(185, 184, 184);
+        }
+    </style>
+
+    <script>
+
+        $(document).ready(()=>{
+            $("#name").blur(()=>{
+                var regex=/^([A-Z]{1}[a-z]+)(\s?[A-Z]{1}[a-z]+)*$/;
+                var name=$("#name").val();
+                if(regex.test(name)){
+                    $("#btnSign").attr("disabled",false);
+                }
+                else{
+                    $("#name").focus();
+                }
+            })
+
+
+            $("#btnSign").click(()=>{
+                var name=$("#name").val();
+
+                var lop="";
+                var valLop=$("#lop").val();
+                if(valLop==1){
+                    lop+=$("#lop option[value=1]").prop("selected","selected").text();
+                }
+                else if(valLop==2){
+                    lop+=$("#lop option[value=2]").prop("selected","selected").text();
+                }
+                else if(valLop==3){
+                    lop+=$("#lop option[value=3]").prop("selected","selected").text();
+                }
+
+                var mon="";
+                var valMon=$("#mon").val();
+                if(valMon=='a'){
+                    mon+=$("#mon option[value=a]").prop("selected","selected").text();
+                }
+                else if(valMon=='b'){
+                    mon+=$("#mon option[value=b]").prop("selected","selected").text();
+                }
+                else if(valMon=='c'){
+                    mon+=$("#mon option[value=c]").prop("selected","selected").text();
+                }
+                
+                var loai="";
+                if($("#lythuyet").is(":checked")){
+                    loai+=$("label[for=lythuyet]").text();
+                }
+                else if($("#thuchanh").is(":checked")){
+                    loai+=$("label[for=thuchanh]").text();
+                }
+                
+                var row=
+                    `
+                    <tr>
+                        <td>${name}</td>
+                        <td>${lop}</td>
+                        <td>${mon}</td>
+                        <td>${loai}</td>
+                    </tr>
+                    `
+                $("#myTable").append(row);
+
+                $("#name").val("");  $("#name").focus();
+                $("#lop option[value=1]").prop("selected","selected");
+                $("#mon option[value=a]").prop("selected","selected")
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row my-3">
+            <div class="col-2">
+                <label for="name" class="fs-4">Họ tên:</label>
+            </div>
+            <div class="col-10">
+                <input type="text" id="name" class="form-control w-50" autofocus>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-2">
+                <label for="lop" class="fs-4">Lớp:</label>
+            </div>
+            <div class="col-10">
+                <select id="lop" class="form-select w-50">
+                    <option value="1">Đại học kỹ thuật phần mềm 19A</option>
+                    <option value="2">Đại học kỹ thuật phần mềm 19B</option>
+                    <option value="3">Đại học kỹ thuật phần mềm 19C</option>
+                </select>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-2">
+                <label for="mon" class="fs-4">Môn học:</label>
+            </div>
+            <div class="col-10">
+                <select id="mon" class="form-select w-50">
+                    <option value="a">Lập trình hướng đối tượng</option>
+                    <option value="b">Hệ thống về công nghệ Web</option>
+                    <option value="c">Cấu trúc dữ liệu và giải thuật</option>
+                </select>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-2">
+                <label class="fs-4">Loại:</label>
+            </div>
+            <div class="col-10 d-flex align-items-center">
+                <input type="radio" name="loai" id="lythuyet" class="form-check-input">
+                <label for="lythuyet" class="form-check-label fs-5 mx-3">Lý thuyết</label>
+                <input type="radio" name="loai" id="thuchanh" class="form-check-input">
+                <label for="thuchanh" class="form-check-label fs-5 mx-3">Thực hành</label>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-2">
+                <button class="btn bg-light border border-2 border-black" id="btnSign" disabled>Đăng ký</button>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col">
+                <table class="table table-light table-hover border border-2 border-dark fs-5 text-center fw-bold" >
+                    <thead>
+                        <tr>
+                            <td>Họ tên</td>
+                            <td>Lớp</td>
+                            <td>Môn học đăng ký</td>
+                            <td>Loại</td>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(()=>{
+            $('#textlastname').blur(()=>{
+                var regex=/^[A-Z]{1}[a-zA-Z]+$/;
+                var lastname=$('#textlastname').val();
+
+                if(regex.test(lastname)){
+                    $('#textlastname').css("outline","3px solid green");
+                }
+                else{
+                    $('#textlastname').css("outline","3px solid red");
+                    $('#textlastname').focus();
+                }
+            })
+
+            $('#textfirstname').blur(()=>{
+                var regex=/^[A-Z]{1}[a-zA-Z]+$/;
+                var firstname=$('#textfirstname').val();
+
+                if(regex.test(firstname)){
+                    $('#textfirstname').css("outline","3px solid green");
+                }
+                else{
+                    $('#textfirstname').css("outline","3px solid red");
+                    $('#textfirstname').focus();
+                }
+            })
+
+            $('#textemail').blur(()=>{
+                var regex=/^[a-zA-Z0-9]+@gmail.com$/;
+                var email=$('#textemail').val();
+
+                if(regex.test(email)){
+                    $('#textemail').css("outline","3px solid green");
+                }
+                else{
+                    $('#textemail').css("outline","3px solid red");
+                    $('#textemail').focus();
+                }
+            })
+
+            $('#textreemail').blur(()=>{
+                var email=$('#textemail').val();
+                var reemail=$('#textreemail').val();
+
+                if(email==reemail){
+                    $('#textreemail').css("outline","3px solid green");
+                }
+                else{
+                    $('#textreemail').css("outline","3px solid red");
+                    $('#textreemail').focus();
+                }
+            })
+
+            $('#pass').blur(()=>{
+                var regex=/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{6}$/;
+                var pass=$('#pass').val();
+
+                if(regex.test(pass)){
+                    $('#pass').css("outline","3px solid green");
+                }
+                else{
+                    $('#pass').css("outline","3px solid red");
+                    $('#pass').focus();
+                }
+            })
+
+            $('#year').blur(()=>{
+                var regex=/^[0-9]{4}$/;
+                var year=$('#year').val();
+
+                if(regex.test(year) && Number(year) < 2002){
+                    $('#year').css("outline","3px solid green");
+                }
+                else{
+                    $('#year').css("outline","3px solid red");
+                    $('#year').focus();
+                }
+            })
+
+            $("#submit").click(()=>{
+                if($('#textlastname').val()!="" && $('#textfirstname').val()!="" && $('#textemail').val()!=""
+                && $('#textreemail').val()!="" && $('#pass').val()!="" && $('#year').val()!=""){
+                    alert("Đăng ký thành công");
+                }
+                else{
+                    alert("Đăng ký thất bại");
+                }
+                $('#textlastname').val("");
+                $('#textfirstname').val("");
+                $('#textemail').val("");
+                $('#textreemail').val("");
+                $('#pass').val("");
+                $('#year').val("");
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row my-3 mx-2">
+            <div class="col">
+                <h1 class="text-center">Đăng ký</h1>
+            </div>
+        </div>
+        <div class="row my-3 mx-2">
+            <div class="col">
+                <h5 class="text-center">Miễn phí và sẽ luôn như vậy</h5>
+            </div>
+        </div>
+        <div class="row my-3 mx-2">
+            <div class="col">
+                <input type="text" class="form-control" id="textlastname" placeholder="Họ">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" id="textfirstname" placeholder="Tên">
+            </div>
+        </div>
+        <div class="row my-3 mx-2">
+            <div class="col">
+                <input type="email" class="form-control" id="textemail" placeholder="Email đăng nhập">
+            </div>
+        </div>
+        <div class="row my-3 mx-2">
+            <div class="col">
+                <input type="email" class="form-control" id="textreemail" placeholder="Nhập lại Email">
+            </div>
+        </div>
+        <div class="row my-3 mx-2">
+            <div class="col">
+                <input type="password" class="form-control" id="pass" placeholder="Mật khẩu">
+            </div>
+        </div>
+        <div class="row my-3 mx-2">
+            <div class="col">
+                <input type="text" class="form-control" id="year" placeholder="Năm sinh">
+            </div>
+        </div>
+        <div class="row my-3 mx-2">
+            <div class="col-6">
+                <button class="form-control bg-success text-white" id="submit">Đăng ký</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
