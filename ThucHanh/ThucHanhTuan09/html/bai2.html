@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        [class*=col-] {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+
+    <script>
+        $(document).ready(() => {
+            var i=2;
+            $("#btnModal").click(() => {
+                $(".modal").show()
+            })
+
+            $(".close").click(() => {
+                $(".modal").hide()
+            })
+
+            $("#ma").blur(() => {
+                var regex = /^[0-9]{9,}$/;
+                var ma = $("#ma").val();
+
+                if (ma == "") {
+                    $(".maNotify").text("Bắt buộc nhập");
+                } else if (regex.test(ma)) {
+                    $(".maNotify").text("Nhập đúng");
+                } else {
+                    $(".maNotify").text("Mã học viên tối thiểu 9 số");
+                }
+            })
+
+            $("#name").blur(() => {
+                var regex = /^[A-Z]{1}[a-zA-Z\s]+$/;
+                var name = $("#name").val();
+
+                if (name == "") {
+                    $(".nameNotify").text("Bắt buộc nhập");
+                } else if (regex.test(name)) {
+                    $(".nameNotify").text("Nhập đúng");
+                } else {
+                    $(".nameNotify").text("Bắt đầu bằng ký tự in hoa");
+                }
+            })
+
+            $("#diachi").blur(() => {
+                var regex = /^[A-Z]{1}[a-zA-Z\s]+$/;
+                var name = $("#diachi").val();
+
+                if (name == "") {
+                    $(".diachiNotify").text("Bắt buộc nhập");
+                } else if (regex.test(name)) {
+                    $(".diachiNotify").text("Nhập đúng");
+                } else {
+                    $(".diachiNotify").text("Bắt đầu bằng ký tự in hoa");
+                }
+            })
+
+            $("#dichvu").change(() => {
+                if ($("#dichvu").val() == "game") {
+                    $("#gia").val("3000");
+                } else if ($("#dichvu").val() == "swim") {
+                    $("#gia").val("4000");
+                } else if ($("#dichvu").val() == "drink") {
+                    $("#gia").val("5000");
+                }
+            })
+
+            $(".dodung").click(() => {
+                var tong = 0;
+                var n = $(".dodung:checked").length;
+                if (n > 0) {
+                    for (var i = 0; i < n; i++) {
+                        tong += parseFloat($(".dodung:checked")[i].value);
+                        $("#tonggia").val(tong);
+                    }
+                }
+            })
+
+            $("input[name='giamtru']").change(function() {
+                var tong = parseFloat($("#gia").val()) + parseFloat($("#tonggia").val()) - parseFloat($(this).val());
+                $("#tongtien").val(tong);
+            })
+
+            $("#submit").click(()=>{
+                if($(".diachiNotify").text()=="Nhập đúng" && $(".nameNotify").text()=="Nhập đúng" && $(".maNotify").text()=="Nhập đúng"){
+                    var ma=$("#ma").val();
+                    var name=$("#name").val();
+                    var diachi=$("#diachi").val();
+                    var tiendichvu= $("#gia").val();
+                    var tiendouong=$("#tonggia").val();
+                    var tong=$("#tongtien").val();
+
+                    var row=
+                        `
+                        <tr>
+                            <td>${++i}</td>
+                            <td>${ma}</td>
+                            <td>${name}</td>
+                            <td>${diachi}</td>
+                            <td>${tiendichvu}</td>
+                            <td>${tiendouong}</td>
+                            <td>${tong}</td>
+                        </tr>
+                        `
+                    $("#myBody").append(row);
+                    $(".modal").hide();
+
+                    $("#ma").val(""); $("#name").val(""); $("#diachi").val("");
+                    $("#gia").val("3000"); $("#tonggia").val("3000"); $("#tongtien").val("");
+                    $(".diachiNotify").text(""); $(".maNotify").text(""); $(".nameNotify").text("");
+                }
+                else{
+                    alert("Nhập đủ thông tin")
+                }
+            })
+
+            $("#reset").click(()=>{
+                $("#ma").val(""); $("#name").val(""); $("#diachi").val("");
+                $("#gia").val("3000"); $("#tonggia").val("3000"); $("#tongtien").val("");
+                $(".diachiNotify").text(""); $(".maNotify").text(""); $(".nameNotify").text("");
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <img src="../img/Annotation 2024-04-10 154913.png" alt="" width="100%" height="100%">
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <nav class="navbar">
+                    <ul class="nav">
+                        <li class="nav-item mr-5">
+                            <a href="#" class="nav-link text-dark">Home</a>
+                        </li>
+                        <li class="nav-item mr-5">
+                            <a href="#" class="nav-link text-dark">About</a>
+                        </li>
+                        <li class="nav-item mr-5 dropdown">
+                            <a href="#" class="nav-link text-dark dropdown-toggle" data-toggle="dropdown">Services</a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item" id="btnModal">Register</a>
+                                <a href="#" class="dropdown-item">Another</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item">Another</a>
+                            </div>
+                        </li>
+                        <li class="nav-item mr-5">
+                            <a href="#" class="nav-link text-dark">Disabled</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-5 d-flex align-items-center justify-content-start">
+                <input type="text" class="form-control w-50 mr-3" placeholder="Search">
+                <button class="btn text-success border border-1 border-success">Search</button>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã học viên</th>
+                        <th>Họ tên</th>
+                        <th>Địa chỉ</th>
+                        <th>Tiền dịch vụ</th>
+                        <th>Tiền đồ uống</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="myBody">
+                    <tr>
+                        <td>1</td>
+                        <td>123456789</td>
+                        <td>Trần Anh</td>
+                        <td>Quảng Ngãi</td>
+                        <td>30000</td>
+                        <td>10000</td>
+                        <td>70000</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>1234567812</td>
+                        <td>Lưu Thanh Nam</td>
+                        <td>Quy Nhơn</td>
+                        <td>2000</td>
+                        <td>20000</td>
+                        <td>15000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>THÔNG TIN THANH TOÁN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label for="ma">Mã học viên</label>
+                            </div>
+                            <div class="col-9">
+                                <input type="text" id="ma" placeholder="123456789" class="form-control">
+                            </div>
+                            <small class="maNotify text-danger">*</small>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label for="name">Họ tên</label>
+                            </div>
+                            <div class="col-9">
+                                <input type="text" id="name" placeholder="Tran Anh Khoa" class="form-control">
+                            </div>
+                            <small class="nameNotify text-danger">*</small>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label for="diachi">Địa chỉ</label>
+                            </div>
+                            <div class="col-9">
+                                <input type="text" id="diachi" placeholder="Quy Nhon" class="form-control">
+                            </div>
+                            <small class="diachiNotify text-danger">*</small>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label for="dichvu">Dịch vụ</label>
+                            </div>
+                            <div class="col-9">
+                                <select class="form-control" id="dichvu">
+                                    <option value="game">Game</option>
+                                    <option value="swim">Bơi</option>
+                                    <option value="drink">Đồ uống</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label for="gia">Giá</label>
+                            </div>
+                            <div class="col-9">
+                                <input type="text" id="gia" placeholder="3000" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label>Đồ dùng</label>
+                            </div>
+                            <div class="col-9">
+                                <div class="row">
+                                    <input type="checkbox" id="1" class="dodung" value="2000">
+                                    <label for="1">Quần áo phơi</label>
+                                </div>
+                                <div class="row">
+                                    <input type="checkbox" id="2" class="dodung" value="3000">
+                                    <label for="2">Phao</label>
+                                </div>
+                                <div class="row">
+                                    <input type="checkbox" id="3" class="dodung" value="4000">
+                                    <label for="3">Kính bơi</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label for="tonggia">Thành tiền</label>
+                            </div>
+                            <div class="col-9">
+                                <input type="text" id="tonggia" placeholder="3000" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label for="giamtru">Giảm trừ</label>
+                            </div>
+                            <div class="col-9">
+                                <div class="row">
+                                    <input type="radio" id="radio1" name="giamtru" value="7000">
+                                    <label for="radio1">Ngày thường (giảm 7000)</label>
+                                </div>
+                                <div class="row">
+                                    <input type="radio" id="radio2" name="giamtru" value="1000">
+                                    <label for="radio2">Cuối tuần (giảm 1000)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <label for="tongtien">Tổng tiền</label>
+                            </div>
+                            <div class="col-9">
+                                <input type="text" id="tongtien" placeholder="3000" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex align-items-center justify-content-center">
+                    <div class="row w-100">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-success text-white w-100" id="submit">Submit</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="reset" class="btn btn-danger text-white w-100" id="reset">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
