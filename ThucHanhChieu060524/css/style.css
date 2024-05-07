@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+header {
+    width: 1080px;
+    height: 40px;
+    background-color: rgb(36, 36, 229);
+    border: 1px solid black;
+}
+
+.container {
+    display: flex;
+    width: 1080px;
+    border: 1px solid black;    
+}
+
+nav {
+    width: 40%;
+    height: 270px;
+    border: 1px solid black;
+    background-color: rgb(36, 36, 229);
+}
+
+h4 {
+    margin-left: 12px;
+}
+
+section {
+    width: 60%;
+    height: 270px;
+    border: 1px solid black;
+    background-color: rgb(36, 36, 229);
+}
+
+article {
+    margin-top: 10px;
+    height: 200px;
+    width: 620px;
+    background-color: burlywood;
+    border: 1px solid black;
+}
+
+footer {
+    width: 1080px;
+    height: 40px;
+    background-color: rgb(36, 36, 229);
+    border: 1px solid black;
+
+}
