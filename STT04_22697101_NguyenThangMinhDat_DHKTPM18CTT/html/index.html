@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        [class*=col-] {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+
+    <script>
+        $(document).ready(()=>{
+            $("#btnModal").click(()=>{
+                $(".modal").show();
+            })
+
+            $(".close").click(()=>{
+                $(".modal").hide();
+            })
+
+            $("#ma").blur(() => {
+                var regex = /^[0-9]{5}$/;
+                var ma = $("#ma").val();
+
+                if (ma == "") {
+                    $(".maNotify").text("Bắt buộc nhập");
+                } else if (regex.test(ma)) {
+                    $(".maNotify").text("Nhập đúng");
+                } else {
+                    $(".maNotify").text("Chữ số có 5 kí tự");
+                }
+            })
+
+            $("#ten").blur(() => {
+                var regex = /^[A-Z]{1}[a-zA-Z\s]{2,}$/;
+                var ten = $("#ten").val();
+
+                if (ten == "") {
+                    $(".tenNotify").text("Bắt buộc nhập");
+                } else if (regex.test(ten)) {
+                    $(".tenNotify").text("Nhập đúng");
+                } else {
+                    $(".tenNotify").text("Bắt đầu bằng ký tự in hoa");
+                }
+            })
+
+            $("#email").blur(() => {
+                var regex = /^[a-zA-Z_]{3,}\d{2}@gmail\.com$/;
+                var email = $("#email").val();
+
+                if (email == "") {
+                    $(".emailNotify").text("Bắt buộc nhập");
+                } else if (regex.test(email)) {
+                    $(".emailNotify").text("Nhập đúng");
+                } else {
+                    $(".emailNotify").text("Email có dạng anhvu_12@gmail.com");
+                }
+            })
+
+            $("#reset").click(()=>{
+                $("#ma").val(""); $("#ten").val(""); $("#email").val("");
+                $(".maNotify").text("*"); $(".tenNotify").text("*"); $(".emailNotify").text("*");
+            })
+
+            $("#submit").click(()=>{
+                if($(".emailNotify").text()=="Nhập đúng" && $(".tenNotify").text()=="Nhập đúng" && $(".maNotify").text()=="Nhập đúng"){
+                    var ma=$("#ma").val();
+                    var name=$("#ten").val();
+                    var email=$("#email").val();
+
+                    $("#mssv").val(ma);
+                    $("#hoten").val(name);
+                    $("#lop").val(email);
+
+                    $("#ma").val(""); $("#ten").val(""); $("#email").val("");
+                    $(".maNotify").text("*"); $(".tenNotify").text("*"); $(".emailNotify").text("*");
+                   
+                    $(".modal").hide();
+                }
+                else{
+                    alert("Nhập đúng thông tin")
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="container border border-3 border-black">
+        <div class="row">
+            <h3>Kiểm tra nhập liệu</h3>
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <nav class="navbar">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="btnModal">Kiểm tra</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="mssv">Mã sinh viên:</label>
+                <input type="text" id="mssv" class="border-top-0 border-left-0 border-right-0" disabled>
+            </div>
+            <div class="col">
+                <label for="hoten">Họ tên:</label>
+                <input type="text" id="hoten" class="border-top-0 border-left-0 border-right-0" disabled>
+            </div>
+            <div class="col">
+                <label for="lop">Lớp:</label>
+                <input type="text" id="lop" class="border-top-0 border-left-0 border-right-0" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Kiểm tra nhập liệu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body border border-1 border-black m-3">
+                    <form>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label for="ma">Mã học viên:</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" id="ma" placeholder="12345" class="form-control">
+                            </div>
+                            <div class="col">
+                                <small class="maNotify text-danger">*</small>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label for="ten">Họ tên:</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" id="ten" placeholder="Tran Thu Trang" class="form-control">
+                            </div>
+                            <div class="col">
+                                <small class="tenNotify text-danger">*</small>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label for="email">Email:</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="email" id="email" placeholder="trangthanh_12@gmail.com" class="form-control">
+                            </div>
+                            <div class="col">
+                                <small class="emailNotify text-danger">*</small>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="row w-100">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-success text-white w-100" id="submit">Chấp nhận</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="reset" class="btn btn-danger text-white w-100" id="reset">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex align-items-center justify-content-end">
+                   <h4>Kiểm tra nhập liệu</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
