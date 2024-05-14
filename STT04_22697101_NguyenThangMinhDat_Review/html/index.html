@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(()=> {
+            var i=1;
+
+            $("#name").blur(()=>{
+                var regex=/^(\b[A-Z][a-z\s]*)+$/
+                var name=$("#name").val();
+
+                if(name==""){
+                    $("#nameNotify").text("Họ tên không rỗng");
+                    $("#nameNotify").removeClass("text-success");
+                    $("#nameNotify").addClass("text-danger");
+                    $("#name").focus();
+                }
+                else if(!regex.test(name)){
+                    $("#nameNotify").text("Ký tự đầu mỗi từ là in hoa");
+                    $("#nameNotify").removeClass("text-success");
+                    $("#nameNotify").addClass("text-danger");
+                    $("#name").focus();
+                }
+                else{
+                    $("#nameNotify").text("Nhập đúng");
+                    $("#nameNotify").removeClass("text-danger");
+                    $("#nameNotify").addClass("text-success");
+                }
+            })
+
+            $("#phone").blur(()=>{
+                var regex=/^(03|08|09)[0-9]{8}$/
+                var phone=$("#phone").val();
+
+                if(phone==""){
+                    $("#phoneNotify").text("Số điện thoại không rỗng");
+                    $("#phoneNotify").removeClass("text-success");
+                    $("#phoneNotify").addClass("text-danger");
+                    $("#phone").focus();
+                }
+                else if(phone.length > 10){
+                    $("#phoneNotify").text("Số điện thoại không quá 10 số");
+                    $("#phoneNotify").removeClass("text-success");
+                    $("#phoneNotify").addClass("text-danger");
+                    $("#phone").focus();
+                }
+                else if(!regex.test(phone)){
+                    $("#phoneNotify").text("Số điện thoại đủ 10 số và bắt đầu 03,08,09");
+                    $("#phoneNotify").removeClass("text-success");
+                    $("#phoneNotify").addClass("text-danger");
+                    $("#phone").focus();
+                }
+                else{
+                    $("#phoneNotify").text("Nhập đúng");
+                    $("#phoneNotify").removeClass("text-danger");
+                    $("#phoneNotify").addClass("text-success");
+                }
+            })
+
+            $("#address").blur(()=>{
+                if($("#address").val()==""){
+                    $("#addressNotify").text("Địa chỉ không rỗng");
+                    $("#addressNotify").removeClass("text-success");
+                    $("#addressNotify").addClass("text-danger");
+                    $("#address").focus();
+                }
+                else{
+                    $("#addressNotify").text("Nhập đúng");
+                    $("#addressNotify").removeClass("text-danger");
+                    $("#addressNotify").addClass("text-success");
+                }
+            })
+
+            $("#product").change(function(){
+                if($(this).val()==350000){
+                    $("#price").val(350000);
+                }
+                else if($(this).val()==500000){
+                    $("#price").val(500000);
+                }
+                else if($(this).val()==550000){
+                    $("#price").val(550000);
+                }
+            })
+
+            $("#qty").blur(()=>{
+                var regex=/^[0-9]+$/
+                var qty=$("#qty").val();
+
+                if(qty==""){
+                    $("#qtyNotify").text("Số lượng không rỗng");
+                    $("#qtyNotify").removeClass("text-success");
+                    $("#qtyNotify").addClass("text-danger");
+                    $("#total").val();
+                    $("#qty").focus();
+                }
+                else if(!regex.test(qty)){
+                    $("#qtyNotify").text("Số lượng phải là số");
+                    $("#qtyNotify").removeClass("text-success");
+                    $("#qtyNotify").addClass("text-danger");
+                    $("#total").val();
+                    $("#qty").focus();
+                }
+                else{
+                    if(parseInt(qty) >= 1 && parseInt(qty)<=50){
+                        $("#qtyNotify").text("Nhập đúng");
+                        $("#qtyNotify").removeClass("text-danger");
+                        $("#qtyNotify").addClass("text-success");
+
+                        var total=parseInt($("#price").val()) * parseInt(qty);
+                        $("#total").val(total);
+                    }
+                    else{
+                        $("#qtyNotify").text("Số lượng trong khoảng 1-50");
+                        $("#qtyNotify").removeClass("text-success");
+                        $("#qtyNotify").addClass("text-danger");
+                        $("#total").val();
+                        $("#qty").focus();
+                    }
+                }
+            })
+
+            $("#btnSubmit").click(()=>{
+                if($("#name").val()=="" || $("#phone").val()=="" || $("#address").val()=="" || $("#qty").val()==""){
+                    alert("Nhập đủ thông tin")
+                }
+                else{
+                    if(!$("#cash").is(":checked") && !$("#cash").is(":checked")){
+                        alert("Chọn phương thức thanh toán")
+                    }
+                    else{
+                        var name=$("#name").val();
+                        var phone=$("#phone").val();
+                        var address=$("#address").val();
+                        var product=$("#product option:selected").text();
+                        var price=$("#price").val();
+                        var qty=$("#qty").val();
+                        var total=$("#total").val();
+                        var payment= ($("#cash").is(":checked")?'Thanh toán khi nhận hàng':'Thanh toán online')
+
+                        var row=
+                        `
+                        <tr>
+                            <td class="border border-1 border-black">${i++}</td>
+                            <td class="border border-1 border-black">${name}</td>
+                            <td class="border border-1 border-black">${phone}</td>
+                            <td class="border border-1 border-black">${address}</td>
+                            <td class="border border-1 border-black">${product}</td>
+                            <td class="border border-1 border-black">${price}</td>
+                            <td class="border border-1 border-black">${qty}</td>
+                            <td class="border border-1 border-black">${total}</td>
+                            <td class="border border-1 border-black"> ${payment}</td>
+                        </tr>
+                        `
+
+                        $(".table").append(row);
+
+                        $("#name").val(""); $("#phone").val(""); $("#address").val("");
+                        $("#product select").val("350000").change();
+                        $("#price").val("350000"); $("#qty").val(""); $("#total").val("");
+                        $("#cash").prop("checked",false);  $("#card").prop("checked",false);
+
+                        $("#nameNotify").text("*"); $("#phoneNotify").text("*"); 
+                        $("#addressNotify").text("*"); $("#qtyNotify").text("*");
+                        $("#nameNotify").removeClass("text-success"); $("#nameNotify").addClass("text-danger");
+                        $("#phoneNotify").removeClass("text-success"); $("#phoneNotify").addClass("text-danger");
+                        $("#addressNotify").removeClass("text-success"); $("#addressNotify").addClass("text-danger");
+                        $("#qtyNotify").removeClass("text-success"); $("#qtyNotify").addClass("text-danger");
+                        
+                        $("#modal").modal('hide');
+                    }
+                }
+            })
+
+            $("#btnReset").click(()=>{
+                $("#name").val(""); $("#phone").val(""); $("#address").val("");
+                $("#product select").val("350000").change();
+                $("#price").val("35000"); $("#qty").val(""); $("#total").val("");
+                $("#cash").prop("checked",false);  $("#card").prop("checked",false);
+
+                $("#nameNotify").text("*"); $("#phoneNotify").text("*"); 
+                $("#addressNotify").text("*"); $("#qtyNotify").text("*");
+                $("#nameNotify").removeClass("text-success"); $("#nameNotify").addClass("text-danger");
+                $("#phoneNotify").removeClass("text-success"); $("#phoneNotify").addClass("text-danger");
+                $("#addressNotify").removeClass("text-success"); $("#addressNotify").addClass("text-danger");
+                $("#qtyNotify").removeClass("text-success"); $("#qtyNotify").addClass("text-danger");
+                        
+            })
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <img src="../img/Screenshot 2024-05-14 204901.png" class="px-0">
+        </div>
+        <div class="row">
+            <nav class="navbar navbar-light bg-light">
+                <ul class="nav fw-bold">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Shein.com</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Trang phục công sở</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Phụ kiện</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Bộ sưu tầm</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-danger text-white" id="btnModal" data-bs-toggle="modal" data-bs-target="#modal">Đặt mua</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row border border-1 border-black mt-3">
+            <h2 class="fw-medium my-4">DANH SÁCH ĐƠN ĐẶT HÀNG</h2>
+        </div>
+        <div class="row">
+            <table class="table table-hover border border-1 border-black">
+                <tr>
+                    <th class="border border-1 border-black">Số tt</th>
+                    <th class="border border-1 border-black">Họ tên khách hàng</th>
+                    <th class="border border-1 border-black">Điện thoại</th>
+                    <th class="border border-1 border-black">Địa chỉ</th>
+                    <th class="border border-1 border-black">Tên sản phẩm</th>
+                    <th class="border border-1 border-black">Đơn giá</th>
+                    <th class="border border-1 border-black">Số lượng</th>
+                    <th class="border border-1 border-black">Thành tiền</th>
+                    <th class="border border-1 border-black">Phương thức thanh toán</th>
+                </tr>
+            </table>
+        </div>
+        <div class="row text-white" style="background-color: brown;">
+            <h4 class="text-center">Thông tin sinh viên:</h4>
+            <p class="fs-5 fw-bold" style="margin-left: 400px;">
+                Họ tên: Nguyễn Thắng Minh Đạt<br>
+                Mã sinh viên: 22697101<br>
+                Mã lớp: DHKTPM18CTT
+            </p>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modal" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">
+                        Thông tin đặt hàng
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3 row">
+                            <label for="name" class="col-4 col-form-label fw-bold text-end">Họ tên khách hàng</label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="name"/>
+                            </div>
+                            <small id="nameNotify" class="text-danger fs-6" style="margin-left: 95px;">*</small>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="phone" class="col-4 col-form-label fw-bold text-end">Điện thoại</label>
+                            <div class="col-8">
+                                <input type="tel" class="form-control" id="phone"/>
+                            </div>
+                            <small id="phoneNotify" class="text-danger fs-6" style="margin-left: 95px;">*</small>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="address" class="col-4 col-form-label fw-bold text-end">Địa chỉ</label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="address"/>
+                            </div>
+                            <small id="addressNotify" class="text-danger fs-6" style="margin-left: 95px;">*</small>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="product" class="col-4 col-form-label fw-bold text-end">Chọn sản phẩm</label>
+                            <div class="col-8">
+                                <select class="form-select" id="product">
+                                    <option value="350000" selected>Áo thun cây thông Noel</option>
+                                    <option value="500000">Đầm công sở A01</option>
+                                    <option value="550000">Chân váy Cotton</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="price" class="col-4 col-form-label fw-bold text-end">Đơn giá</label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="price" readonly value="350000"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="qty" class="col-4 col-form-label fw-bold text-end">Số lượng</label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="qty"/>
+                            </div>
+                            <small id="qtyNotify" class="text-danger fs-6" style="margin-left: 95px;">*</small>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="payment" class="col-4 col-form-label fw-bold text-end">Chọn hình thức thanh toán</label>
+                            <div class="col-8">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="cash" name="pay"/>
+                                    <label class="form-check-label" for="cash">Thanh toán khi nhận hàng</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="card" name="pay"/>
+                                    <label class="form-check-label" for="card">Thanh toán online</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="total" class="col-4 col-form-label fw-bold text-end">Thành tiền</label>
+                            <div class="col-8">
+                                <input type="text" class="form-control" id="total" readonly/>
+                            </div>
+                        </div>
+                    </form>
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" id="btnSubmit">Đặt mua</button>
+                    <button type="reset" class="btn btn-danger" id="btnReset">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
