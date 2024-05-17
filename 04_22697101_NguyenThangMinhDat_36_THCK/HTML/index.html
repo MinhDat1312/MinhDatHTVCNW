@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <script src="../JS/jquery-3.7.1.js"></script>
+    <script src="../JS/bootstrap.min.js"></script>
+    <script src="../JS/bootstrap.bundle.min.js"></script>
+
+    <style>
+        [class*=col-] {
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(() => {
+            var index = 1;
+
+            $("#btnModal").click(() => {
+                $(".modal").show();
+            })
+
+            $(".close").click(() => {
+                $(".modal").hide();
+            })
+
+            $(".btnClose").click(() => {
+                $(".modal").hide();
+            })
+
+            $("#mabn").blur(() => {
+                var regex = /^BN-[0-9]{5}$/;
+                var mabn = $("#mabn").val();
+                if (regex.test(mabn)) {
+                    $("#mabnNotify").text("Nhập đúng");
+                } else {
+                    $("#mabnNotify").text("Không đúng định dạng (BN-YYYYY)");
+                }
+            })
+
+            $("#thebh").blur(() => {
+                var regex = /(.jpg|.png|.gif)$/;
+                var file = $("#thebh").val();
+
+
+                if (regex.test(file)) {
+                    $("#thebhNotify").text("Nhập đúng");
+                } else {
+                    $("#thebhNotify").text("Đuôi ảnh .jpg hoặc .png hoặc .gif");
+                }
+            })
+
+            $("#date").blur(() => {
+                var currentDate = new Date();
+                var date = new Date($("#date").val());
+
+                if (date.getTime() > currentDate.getTime()) {
+                    $('#dateNotify').text("Nhập đúng");
+                } else {
+                    $('#dateNotify').text("Ngày phải sau ngày hiện tại");
+                }
+            })
+
+            var textDvu = "";
+            $(".loaidv").click(function() {
+                var dvuText = "";
+                var tong = 0;
+                var n = $(".loaidv:checked").length;
+                for (var i = 0; i < n; i++) {
+                    tong += parseFloat($(".loaidv:checked")[i].value);
+                    if (!dvuText.includes($(".loaidv:checked")[i].name)) {
+                        dvuText += $(".loaidv:checked")[i].name + ", ";
+                    }
+                }
+                $("#total").val(tong);
+                textDvu = dvuText;
+            })
+
+            var khoa = ""
+            $("#khoa").change(function() {
+                khoa += $(this).val()
+            })
+
+
+            $(".btnSubmit").click(() => {
+                if ($("#mabnNotify").text() == "Nhập đúng" && $("#dateNotify").text() == "Nhập đúng" &&
+                    $("#thebhNotify").text() == "Nhập đúng") {
+                    var stt = ++index;
+                    var mabn = $("#mabn").val();
+                    var date = $("#date").val();
+                    var dvu = textDvu;
+                    var total = $("#total").val();
+                    var file = $("#thebh").val().split("\\")[$("#thebh").val().split("\\").length - 1];
+
+                    var row =
+                        `
+                        <tr>
+                            <td>${stt}</td>
+                            <td>${mabn}</td>
+                            <td><img src="../IMG/${file}" alt="" class="w-50"></td>
+                            <td>${date}</td>
+                            <td>${dvu}</td>
+                            <td>${total}</td>
+                            <td>${khoa}</td>
+                        </tr>
+                        `
+
+                    $("#myBody").append(row);
+                    $(".modal").hide();
+
+                    $("#mabn").val("");
+                    $("#total").val("");
+
+                } else {
+                    alert("Nhập đúng thông tin");
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <img src="../IMG/3.jpg" alt="" width="100%">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <nav class="navbar">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="btnModal">Đặt lịch</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã bệnh nhân</th>
+                            <th>Thẻ bảo hiểm</th>
+                            <th>Ngày đăng ký khám</th>
+                            <th>Loại dịch vụ</th>
+                            <th>Tổng thành tiền dịch vụ</th>
+                            <th>Chuyên khoa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myBody">
+                        <tr>
+                            <td>1</td>
+                            <td>BN-12345</td>
+                            <td><img src="../IMG/thebh.jpg" alt="" class="w-50"></td>
+                            <td>20/04/2024</td>
+                            <td>Khám theo yêu cầu, Điều trị ngoại trú</td>
+                            <td>1000000</td>
+                            <td>Ngoại tổng quát</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                22697101-Nguyễn Thắng Minh Đạt-DHKTPM18CTT
+            </div>
+        </div>
+    </div>
+</body>
+
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>ĐẶT LỊCH KHÁM TRỰC TUYẾN</h4>
+                <button type="button" class="close">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="mabn">Mã bệnh nhân</label>
+                        <input type="text" id="mabn" class="form-control">
+                        <small id="mabnNotify" class="text-danger">*</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="thebh">Hình thẻ bảo hiểm</label>
+                        <input type="file" id="thebh" class="form-control">
+                        <small id="thebhNotify" class="text-danger">*</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Ngày khám</label>
+                        <input type="date" id="date" class="form-control">
+                        <small id="dateNotify" class="text-danger">*</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="loaidv">Loại dịch vụ</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="mr-1">
+                                <input type="checkbox" name="Khám theo yêu cầu" id="1" class="loaidv" class="form-control" value="400000">
+                                <label for="1">Khám theo yêu cầu</label>
+                            </div>
+                            <div class="mr-1">
+                                <input type="checkbox" name="Điều trị ngoại trú" id="2" class="loaidv" class="form-control" value="600000">
+                                <label for="2">Điều trị ngoại trú</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="Bác sĩ theo yêu cầu" id="3" class="loaidv" class="form-control" value="500000">
+                                <label for="3">Bác sĩ theo yêu cầu</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="total">Tổng thành tiền dịch vụ</label>
+                        <input type="text" id="total" class="form-control" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="khoa">Chuyên khoa</label>
+                        <select id="khoa" class="form-control">
+                            <option value="Nhi">Nhi</option>
+                            <option value="Ngoại tổng quát">Ngoại tổng quát</option>
+                        </select>
+                    </div>
+                </form>
+                <button class="btn btn-primary text-white btnSubmit">Đặt lịch</button>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger text-white btnClose">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
