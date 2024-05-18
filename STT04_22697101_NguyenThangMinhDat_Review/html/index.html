@@ -132,7 +132,7 @@
                     alert("Nhập đủ thông tin")
                 }
                 else{
-                    if(!$("#cash").is(":checked") && !$("#cash").is(":checked")){
+                    if(!$("#cash").is(":checked") && !$("#card").is(":checked")){
                         alert("Chọn phương thức thanh toán")
                     }
                     else{
@@ -163,7 +163,7 @@
                         $(".table").append(row);
 
                         $("#name").val(""); $("#phone").val(""); $("#address").val("");
-                        $("#product select").val("350000").change();
+                        $("#select select").val("350000").change();
                         $("#price").val("350000"); $("#qty").val(""); $("#total").val("");
                         $("#cash").prop("checked",false);  $("#card").prop("checked",false);
 
@@ -181,7 +181,7 @@
 
             $("#btnReset").click(()=>{
                 $("#name").val(""); $("#phone").val(""); $("#address").val("");
-                $("#product select").val("350000").change();
+                $("#select select").val("350000").change();
                 $("#price").val("35000"); $("#qty").val(""); $("#total").val("");
                 $("#cash").prop("checked",false);  $("#card").prop("checked",false);
 
@@ -293,7 +293,7 @@
                         </div>
                         <div class="mb-3 row">
                             <label for="product" class="col-4 col-form-label fw-bold text-end">Chọn sản phẩm</label>
-                            <div class="col-8">
+                            <div class="col-8" id="select">
                                 <select class="form-select" id="product">
                                     <option value="350000" selected>Áo thun cây thông Noel</option>
                                     <option value="500000">Đầm công sở A01</option>
@@ -334,7 +334,6 @@
                             </div>
                         </div>
                     </form>
-                
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success" id="btnSubmit">Đặt mua</button>
