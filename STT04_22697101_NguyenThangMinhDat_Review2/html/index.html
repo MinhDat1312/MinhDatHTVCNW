@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        [class*=col-] {
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(()=>{
+            var res=1
+            $("#name").blur(()=>{
+                var regex=/^((\b[A-Za-z]{2,}\b)\s*)+$/
+                var name=$("#name").val()
+
+                if(name==""){
+                    $("#nameNotify").text("Bắt buộc nhập")
+                    $("#nameNotify").removeClass("text-success")
+                    $("#nameNotify").addClass("text-danger")
+                    $("#name").focus()
+                }
+                else if(!regex.test(name)){
+                    $("#nameNotify").text("Họ tên chỉ gồm các ký tự chữ cái, có thể có ký tự khoảng trắng, mỗi từ có từ 2 ký tự trở lên")
+                    $("#nameNotify").removeClass("text-success")
+                    $("#nameNotify").addClass("text-danger")
+                    $("#name").focus()
+                }
+                else{
+                    $("#nameNotify").text("Nhập đúng")
+                    $("#nameNotify").removeClass("text-danger")
+                    $("#nameNotify").addClass("text-success")
+                }
+            })
+
+            $("#phone").blur(()=>{
+                var regex=/^([0-9]{4})[0-9]{3}-[0-9]{3}$/
+                var phone=$("#phone").val()
+
+                if(phone==""){
+                    $("#phoneNotify").text("Bắt buộc nhập")
+                    $("#phoneNotify").removeClass("text-success")
+                    $("#phoneNotify").addClass("text-danger")
+                    $("#phone").focus()
+                }
+                else if(!regex.test(phone)){
+                    $("#phoneNotify").text("Điện thoại liên hệ có mẫu sau: (0000)000-000")
+                    $("#phoneNotify").removeClass("text-success")
+                    $("#phoneNotify").addClass("text-danger")
+                    $("#phone").focus()
+                }
+                else{
+                    $("#phoneNotify").text("Nhập đúng")
+                    $("#phoneNotify").removeClass("text-danger")
+                    $("#phoneNotify").addClass("text-success")
+                }
+            })
+
+            $("#date").blur(()=>{
+                var currentDate=new Date()
+                var date=new Date($("#date").val())
+
+                if(date=="Invalid Date"){
+                    $("#dateNotify").text("Bắt buộc nhập")
+                    $("#dateNotify").removeClass("text-success")
+                    $("#dateNotify").addClass("text-danger")
+                    $("#date").focus()
+                }
+                else if(date.getDate() <= currentDate.getDate()){
+                    $("#dateNotify").text("Ngày đặt tiệc trước ngày hiện tại.")
+                    $("#dateNotify").removeClass("text-success")
+                    $("#dateNotify").addClass("text-danger")
+                    $("#date").focus()
+                }
+                else{
+                    $("#dateNotify").text("Nhập đúng")
+                    $("#dateNotify").removeClass("text-danger")
+                    $("#dateNotify").addClass("text-success")
+                }
+            })
+
+            $("#time").blur(()=>{
+                var time=$("#time").val()
+
+                if(time==""){
+                    $("#timeNotify").text("Bắt buộc nhập")
+                    $("#timeNotify").removeClass("text-success")
+                    $("#timeNotify").addClass("text-danger")
+                    $("#time").focus()
+                }
+                else{
+                    $("#timeNotify").text("Nhập đúng")
+                    $("#timeNotify").removeClass("text-danger")
+                    $("#timeNotify").addClass("text-success")
+                }
+            })
+
+            $("#qty").blur(()=>{
+                var regex=/^[0-9]+$/
+                var qty=$("#qty").val()
+
+                if(qty==""){
+                    $("#qtyNotify").text("Bắt buộc nhập")
+                    $("#qtyNotify").removeClass("text-success")
+                    $("#qtyNotify").addClass("text-danger")
+                    $("#qty").focus()
+                }
+                else if(!regex.test(qty)){
+                    $("#qtyNotify").text("Số người tham gia dự tiệc phải là số, ít nhất là 1")
+                    $("#qtyNotify").removeClass("text-success")
+                    $("#qtyNotify").addClass("text-danger")
+                    $("#qty").focus()
+                }
+                else{
+                    if(parseInt(qty) > 0){
+                        $("#qtyNotify").text("Nhập đúng")
+                        $("#qtyNotify").removeClass("text-danger")
+                        $("#qtyNotify").addClass("text-success")
+                    }
+                    else{
+                        $("#qtyNotify").text("Số người tham gia dự tiệc phải là số, ít nhất là 1")
+                        $("#qtyNotify").removeClass("text-success")
+                        $("#qtyNotify").addClass("text-danger")
+                        $("#qty").focus()
+                    }
+                }
+            })
+
+            $("#type").blur(()=>{
+                var type=$("#type option:selected").val();
+
+                if(type=="Set Menu"){
+                    $("#typeNotify").text("Vui lòng chọn loại tiệc")
+                    $("#typeNotify").removeClass("text-success")
+                    $("#typeNotify").addClass("text-danger")
+                    $("#type").focus()
+                }
+                else{
+                    $("#typeNotify").text("Nhập đúng")
+                    $("#typeNotify").removeClass("text-danger")
+                    $("#typeNotify").addClass("text-success")
+                }
+            })
+
+            $("#submit").click(()=>{
+                var name=$("#name").val()
+                var phone=$("#phone").val()
+                var date=new Date($("#date").val())
+                var time=$("#time").val()
+                var qty=$("#qty").val()
+                var type=$("#type option:selected").val()
+                
+                if(name=="" || phone=="" || date=="Invalid Date" || time=="" || qty=="" || type=="Set Menu"){
+                    alert("Nhập đủ thông tin đặt tiệc")
+                }
+                else{
+                    var room=""
+                    if(!$("#vip").is(":checked") && !$("#normal").is(":checked")){
+                        $("#roomNotify").text("Vui lòng chọn loại phòng")
+                    }
+                    else{
+                        room+=$("#vip").is(":checked")?"VIP":"Thường"
+                        
+                        var services=""
+                        for(var i=0;i<$(".service:checked").length;i++){
+                            if(!services.includes($(".service:checked")[i].value)){
+                                services+=$(".service:checked")[i].value+", "
+                            }
+                        }
+
+                        var member=$("#member").is(":checked")?"Thành viên":""
+                        var note=$("#note").val()
+
+                        var formatDate= (date.getDate()<10?"0"+date.getDate():date.getDate()) +"/"+  
+                                        ((date.getMonth()+1)<10?"0"+(date.getMonth()+1):(date.getMonth()+1)) +"/"+
+                                        date.getFullYear()
+
+                        var row=
+                        `
+                        <tr>
+                            <td>${res++<10?"0"+--res:--res}</td>
+                            <td>${name}</td>
+                            <td>${phone}</td>
+                            <td>
+                                ${formatDate}
+                            </td>
+                            <td>${time}</td>
+                            <td>${qty}</td>
+                            <td>${type}</td>
+                            <td>${room}</td>
+                            <td>${member}</td>
+                            <td>${services}</td>
+                            <td>${note}</td>
+                        </tr>
+                        `
+                        res++
+                        $("tbody").append(row)
+
+                        $("#name").val(""); $("#phone").val(""); $("#date").val(""); $("#time").val("");
+                        $("#qty").val(""); $("#select select").val("Set Menu").change();
+                        $("#vip").prop("checked",false); $("#normal").prop("checked",false);
+                        $(".service").prop("checked",false); $("#member").prop("checked",false); $("#note").val("")
+
+                        $("#nameNotify").text("*"); $("#nameNotify").removeClass("text-success"); $("#nameNotify").addClass("text-danger")
+                        $("#phoneNotify").text("*"); $("#phoneNotify").removeClass("text-success"); $("#phoneNotify").addClass("text-danger")
+                        $("#dateNotify").text("*"); $("#dateNotify").removeClass("text-success"); $("#dateNotify").addClass("text-danger")
+                        $("#timeNotify").text("*"); $("#timeNotify").removeClass("text-success"); $("#timeNotify").addClass("text-danger")
+                        $("#qtyNotify").text("*"); $("#qtyNotify").removeClass("text-success"); $("#qtyNotify").addClass("text-danger")
+                        $("#typeNotify").text("*"); $("#typeNotify").removeClass("text-success"); $("#typeNotify").addClass("text-danger")
+                        $("#roomNotify").text("*"); $("#roomNotify").removeClass("text-success"); $("#roomNotify").addClass("text-danger")
+
+
+                        $("#modal").modal('hide')
+                    }
+                }
+            })
+        })
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <img src="../img/Screenshot 2024-05-19 000301.png" class="px-0" alt="">
+        </div>
+        <div class="row">
+            <nav class="navbar navbar-light bg-light rounded-3 border border-1 border-black">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tổ chức</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Đăng ký chỗ ngồi</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal">Form đặt chỗ</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row mt-3">
+            <table class="table table-bordered table-hover" id="table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Họ tên</th>
+                        <th>Điện thoại</th>
+                        <th>Ngày nhận tiệc</th>
+                        <th>Giờ nhận tiệc</th>
+                        <th>Số người</th>
+                        <th>Loại tiệc</th>
+                        <th>Loại phòng</th>
+                        <th>Thành viên</th>
+                        <th>Dịch vụ đi kèm</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00</td>
+                        <td>Lê Lan</td>
+                        <td>0909666777</td>
+                        <td>01/01/2020</td>
+                        <td>11:20</td>
+                        <td>15</td>
+                        <td>Buffet</td>
+                        <td>VIP</td>
+                        <td>Thành viên</td>
+                        <td>Hoa tươi</td>
+                        <td>Có trẻ em</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Thông tin đặt tiệc</h2>
+                    <button type="button" class="btn-close" aria-label="close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body mx-3">
+                    <form>
+                        <div class="mb-3 row">
+                            <label for="name" class="col-12 fw-bold">
+                                Họ tên người đặt tiệc:
+                                <small id="nameNotify" class="text-danger">*</small>
+                            </label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="name"  placeholder="Họ tên"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="phone" class="col-12 fw-bold">
+                                Điện thoại liên hệ:
+                                <small id="phoneNotify" class="text-danger">*</small>
+                            </label>
+                            <div class="col-12">
+                                <input type="tel" class="form-control" id="phone"  placeholder="Điện thoại"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="date" class="col-12 fw-bold">
+                                Ngày nhận tiệc:
+                                <small id="dateNotify" class="text-danger">*</small>
+                            </label>
+                            <div class="col-12">
+                                <input type="date" class="form-control" id="date"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="time" class="col-12 fw-bold">
+                                Giờ nhận tiệc:
+                                <small id="timeNotify" class="text-danger">*</small>
+                            </label>
+                            <div class="col-12">
+                                <input type="time" class="form-control" id="time"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="qty" class="col-12 fw-bold">
+                               Số người:
+                                <small id="qtyNotify" class="text-danger">*</small>
+                            </label>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="qty"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="type" class="col-12 fw-bold">
+                               Loại tiệc:
+                                <small id="typeNotify" class="text-danger">*</small>
+                            </label>
+                            <div class="col-12" id="select">
+                                <select id="type" class="w-100 form-select">
+                                    <option value="Set Menu" selected>Set Menu</option>
+                                    <option value="Buffet">Buffet</option>
+                                    <option value="Finger Food">Finger Food</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-12 d-flex">
+                                <label for="room" class=" fw-bold">
+                                    Loại phòng:
+                                    <small id="roomNotify" class="text-danger">*</small>
+                                </label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="vip" name="optionRoom"/>
+                                        <label class="form-check-label" for="vip">VIP</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="normal" name="optionRoom"/>
+                                        <label class="form-check-label" for="normal">Thường</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-12 d-flex">
+                                <label class="fw-bold">
+                                   Dịch vụ đi kèm:
+                                </label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input service" type="checkbox" id="1" value="Nhân viên phục vụ riêng"/>
+                                        <label class="form-check-label" for="1">Nhân viên phục vụ riêng</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input service" type="checkbox" id="2" value="Hoa tươi"/>
+                                        <label class="form-check-label" for="2">Hoa tươi</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-12 d-flex">
+                                <label class="fw-bold">
+                                   Thành viên:
+                                </label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="member"/>
+                                        <label class="form-check-label text-primary fst-italic" for="member">nếu bạn là thành viên của quán</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="note" class="col-12 fw-bold">
+                               Ghi chú:
+                            </label>
+                            <div class="col-12">
+                                <textarea id="note" placeholder="Không gian thoáng mát" class="w-100 form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="mb-3 row">
+                        <button type="submit" class="w-100 btn bg-light" id="submit">Lưu</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <h4 class="text-danger text-end opacity-75">Hot line: 1900 6005</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
