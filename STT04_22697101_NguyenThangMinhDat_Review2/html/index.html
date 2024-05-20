@@ -222,6 +222,23 @@
                     }
                 }
             })
+
+            $(".btn-close").click(()=>{
+                $("#name").val(""); $("#phone").val(""); $("#date").val(""); $("#time").val("");
+                $("#qty").val(""); $("#select select").val("Set Menu").change();
+                $("#vip").prop("checked",false); $("#normal").prop("checked",false);
+                $(".service").prop("checked",false); $("#member").prop("checked",false); $("#note").val("")
+
+                $("#nameNotify").text("*"); $("#nameNotify").removeClass("text-success"); $("#nameNotify").addClass("text-danger")
+                $("#phoneNotify").text("*"); $("#phoneNotify").removeClass("text-success"); $("#phoneNotify").addClass("text-danger")
+                $("#dateNotify").text("*"); $("#dateNotify").removeClass("text-success"); $("#dateNotify").addClass("text-danger")
+                $("#timeNotify").text("*"); $("#timeNotify").removeClass("text-success"); $("#timeNotify").addClass("text-danger")
+                $("#qtyNotify").text("*"); $("#qtyNotify").removeClass("text-success"); $("#qtyNotify").addClass("text-danger")
+                $("#typeNotify").text("*"); $("#typeNotify").removeClass("text-success"); $("#typeNotify").addClass("text-danger")
+                $("#roomNotify").text("*"); $("#roomNotify").removeClass("text-success"); $("#roomNotify").addClass("text-danger")
+
+                $("#modal").modal('hide')
+            })
         })
     </script>
 
@@ -290,7 +307,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>Thông tin đặt tiệc</h2>
-                    <button type="button" class="btn-close" aria-label="close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" aria-label="close"></button>
                 </div>
                 <div class="modal-body mx-3">
                     <form>
